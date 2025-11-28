@@ -2,11 +2,19 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="colorPrimary">#FFA500</color>
-    <color name="colorAccent">#DAA520</color>
-    <color name="textPrimary">#FF000000</color>
-    <color name="textSecondary">#808080</color>
-    <color name="textHint">#A9A9A9</color>
-    <color name="textForgotPassword">#FFBF48</color>
-    <color name="colorCardBackground">#FFEFD5</color>
+
+    <!-- Material Design Standard Colors -->
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <!-- Text Colors -->
+    <color name="textPrimary">#DE000000</color> <!-- 87% black -->
+    <color name="textSecondary">#8A000000</color> <!-- 54% black -->
+    <color name="textHint">#61000000</color> <!-- 38% black -->
+    <color name="textForgotPassword">#03A9F4</color>
+
+    <!-- Background Colors -->
+    <color name="colorCardBackground">#FFFFFF</color>
+
 </resources>

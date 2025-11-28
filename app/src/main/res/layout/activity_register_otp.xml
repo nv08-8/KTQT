@@ -74,14 +74,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
+                android:autofillHints="one-time-code"
                 android:background="@drawable/edittext_bg"
-                android:hint="123456"
+                android:drawableTint="@color/textHint"
+                android:hint="xxxxxx"
                 android:inputType="number"
                 android:maxLength="6"
                 android:paddingHorizontal="16dp"
-                android:textAlignment="center"
-                android:autofillHints="one-time-code"
-                android:drawableTint="@color/textHint"/>
+                android:textAlignment="center" />
 
             <Button
                 android:id="@+id/btnVerify"

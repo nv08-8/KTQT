@@ -22,4 +22,35 @@
 
     <!-- Added slogan used by activity_splash.xml -->
     <string name="slogan">Một nơi tìm sách yêu thích</string>
+    <string name="back_button">Back</string>
+    <string name="reset_password_title">Reset Password</string>
+    <string name="reset_password_instruction">Enter your new password below.</string>
+    <string name="new_password_hint">New Password</string>
+    <string name="confirm_new_password_hint">Confirm New Password</string>
+    <string name="confirm">Confirm</string>
+
+    <!-- Profile Activity -->
+    <string name="profile_name">Hồng Phước</string>
+    <string name="profile_username">@hongphuoc_cute</string>
+    <string name="membership_level">Thành viên Kim Cương</string>
+    <string name="my_orders">Đơn mua của tôi</string>
+    <string name="history">Lịch sử</string>
+    <string name="history_arrow"> > </string>
+    <string name="utilities">Tiện ích</string>
+    <string name="link_account">Liên kết TK</string>
+    <string name="wallet_and_bank">Ví &amp; Ngân hàng</string>
+    <string name="voucher_wallet">Kho Voucher</string>
+    <string name="vouchers_available">2 mã khả dụng</string>
+    <string name="book_super_sale">Siêu Sale Sách</string>
+    <string name="sale_off">Giảm đến 50%</string>
+    <string name="settings_button_description">Cài đặt</string>
+    <string name="avatar_image_description">Ảnh đại diện</string>
+    <string name="utility_icon_description">Biểu tượng tiện ích</string>
+
+    <!-- Order Status -->
+    <string name="status_wait_confirm">Chờ xác nhận</string>
+    <string name="status_wait_pickup">Chờ lấy hàng</string>
+    <string name="status_shipping">Đang giao</string>
+    <string name="status_rating">Đánh giá</string>
+    <string name="content_description_status_icon">Biểu tượng trạng thái đơn hàng</string>
 </resources>

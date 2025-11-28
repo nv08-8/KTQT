@@ -1,6 +1,7 @@
 package vn.hcmute.ktqt.network;
 
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -8,39 +9,42 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
-import vn.hcmute.ktqt.models.AuthResponse;
+import vn.hcmute.ktqt.model.User;
 import vn.hcmute.ktqt.models.Category;
-import vn.hcmute.ktqt.models.PagedResponse;
 import vn.hcmute.ktqt.models.Product;
-import vn.hcmute.ktqt.models.User;
-import vn.hcmute.ktqt.models.requests.LoginRequest;
-import vn.hcmute.ktqt.models.requests.OtpRequest;
-import vn.hcmute.ktqt.models.requests.RegisterRequest;
-import vn.hcmute.ktqt.models.requests.SendOtpRequest;
+import vn.hcmute.ktqt.models.responses.PagedResponse;
 
 public interface ApiService {
 
-    @GET("categories")
+    @GET("api/user/profile")
+    Call<User> getUserProfile();
+
+    @GET("api/categories")
     Call<List<Category>> getCategories();
 
-    @GET("categories/{id}/products")
-    Call<PagedResponse<Product>> getProductsByCategory(@Path("id") String categoryId,
-                                                       @Query("page") int page,
-                                                       @Query("pageSize") int pageSize,
-                                                       @Query("sort") String sort);
+    @GET("api/products/category/{categoryId}")
+    Call<PagedResponse<Product>> getProductsByCategory(
+            @Path("categoryId") String categoryId,
+            @Query("page") int page,
+            @Query("pageSize") int pageSize,
+            @Query("sortBy") String sortBy
+    );
 
-    @POST("auth/register")
-    Call<Void> register(@Body RegisterRequest body);
+    @POST("api/auth/forgot-password")
+    Call<Map<String, Object>> forgotPassword(@Body Map<String, String> body);
 
-    @POST("auth/send-otp")
-    Call<Void> sendOtp(@Body SendOtpRequest body);
+    @POST("api/auth/login")
+    Call<Map<String, Object>> login(@Body Map<String, String> body);
 
-    @POST("auth/verify-otp")
-    Call<AuthResponse> verifyOtp(@Body OtpRequest body);
+    @POST("api/auth/verify-otp")
+    Call<Map<String, Object>> verifyOtp(@Body Map<String, String> body);
 
-    @POST("auth/login")
-    Call<AuthResponse> login(@Body LoginRequest body);
+    @POST("api/auth/finish-register")
+    Call<Map<String, Object>> finishRegister(@Body Map<String, String> body);
 
-    @GET("auth/profile")
-    Call<User> profile();
+    @POST("api/auth/send-otp")
+    Call<Map<String, Object>> sendOtp(@Body Map<String, String> body);
+
+    @POST("api/auth/reset-password")
+    Call<Map<String, Object>> resetPassword(@Body Map<String, String> body);
 }

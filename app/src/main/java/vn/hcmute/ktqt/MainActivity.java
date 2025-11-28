@@ -1,13 +1,11 @@
+//Vo Nguyen Quynh Nhu - 23162074
 package vn.hcmute.ktqt;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -25,7 +23,7 @@ import vn.hcmute.ktqt.adapters.CategoryAdapter;
 import vn.hcmute.ktqt.adapters.ProductAdapter;
 import vn.hcmute.ktqt.data.SessionManager;
 import vn.hcmute.ktqt.models.Category;
-import vn.hcmute.ktqt.models.PagedResponse;
+import vn.hcmute.ktqt.models.responses.PagedResponse;
 import vn.hcmute.ktqt.models.Product;
 import vn.hcmute.ktqt.network.ApiService;
 import vn.hcmute.ktqt.network.RetrofitClient;
@@ -51,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -101,51 +98,31 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button btnLogout = findViewById(R.id.btnLogout);
-        btnLogout.setOnClickListener(v -> {
-            session.clear();
-            startActivity(new Intent(MainActivity.this, vn.hcmute.ktqt.ui.auth.LoginActivity.class));
-            finish();
-        });
-
-        // Load data
         loadCategories();
-
-        // If not logged in, navigate to login
-        if (!session.isLoggedIn()) {
-            startActivity(new Intent(this, vn.hcmute.ktqt.ui.auth.LoginActivity.class));
-            finish();
-            return;
-        }
-
-        // Optionally load profile (not implemented) and UI updates
     }
 
     private void loadCategories() {
-        progressBar.setVisibility(View.VISIBLE);
         api.getCategories().enqueue(new Callback<List<Category>>() {
             @Override
             public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
-                progressBar.setVisibility(View.GONE);
-                if (response.isSuccessful()) {
-                    List<Category> cats = response.body();
-                    categoryAdapter.setItems(cats);
-                    if (cats != null && !cats.isEmpty()) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<Category> categories = response.body();
+                    categoryAdapter.setItems(categories);
+                    if (!categories.isEmpty()) {
                         // auto select first
-                        selectedCategoryId = cats.get(0).id;
+                        selectedCategoryId = categories.get(0).id;
                         currentPage = 1;
                         productAdapter.clear();
                         loadProducts(selectedCategoryId, currentPage);
                     }
                 } else {
-                    Toast.makeText(MainActivity.this, "Không thể tải categories", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Failed to load categories", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<Category>> call, Throwable t) {
-                progressBar.setVisibility(View.GONE);
-                Toast.makeText(MainActivity.this, "Lỗi mạng khi tải categories", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "An error occurred: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
