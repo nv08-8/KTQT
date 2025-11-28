@@ -1,8 +1,8 @@
-//Vo Nguyen Quynh Nhu - 23162074
 package vn.hcmute.ktqt;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -24,7 +23,6 @@ import vn.hcmute.ktqt.adapters.CategoryAdapter;
 import vn.hcmute.ktqt.adapters.ProductAdapter;
 import vn.hcmute.ktqt.data.SessionManager;
 import vn.hcmute.ktqt.models.Category;
-import vn.hcmute.ktqt.models.PagedResponse;
 import vn.hcmute.ktqt.models.Product;
 import vn.hcmute.ktqt.network.ApiService;
 import vn.hcmute.ktqt.network.RetrofitClient;
@@ -41,12 +39,6 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView rvProducts;
     private ProgressBar progressBar;
 
-    private int currentPage = 1;
-    private final int pageSize = 20;
-    private boolean isLoading = false;
-    private boolean isLastPage = false;
-    private String selectedCategoryId = null;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,93 +53,92 @@ public class MainActivity extends AppCompatActivity {
         session = new SessionManager(this);
         api = RetrofitClient.getClient(this).create(ApiService.class);
 
+        setupViews();
+        setupAdapters();
+
+        loadCategories();
+        loadAllProducts(); // Initially load all books
+    }
+
+    private void setupViews() {
         rvCategories = findViewById(R.id.rvCategories);
         rvProducts = findViewById(R.id.rvProducts);
         progressBar = findViewById(R.id.progressBar);
+    }
 
+    private void setupAdapters() {
         categoryAdapter = new CategoryAdapter(category -> {
-            // on category click
-            selectedCategoryId = category.id;
-            currentPage = 1;
-            isLastPage = false;
-            productAdapter.clear();
-            loadProducts(selectedCategoryId, currentPage);
+            // When a category is clicked, load books for that category
+            loadProductsByCategory(category.getName());
         });
 
         rvCategories.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         rvCategories.setAdapter(categoryAdapter);
 
         productAdapter = new ProductAdapter();
-        GridLayoutManager gm = new GridLayoutManager(this, 2);
-        rvProducts.setLayoutManager(gm);
+        rvProducts.setLayoutManager(new GridLayoutManager(this, 2));
         rvProducts.setAdapter(productAdapter);
-
-        rvProducts.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                if (dy <= 0) return;
-                int visibleItemCount = gm.getChildCount();
-                int totalItemCount = gm.getItemCount();
-                int firstVisibleItemPosition = gm.findFirstVisibleItemPosition();
-
-                if (!isLoading && !isLastPage) {
-                    if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount - 4) {
-                        loadProducts(selectedCategoryId, currentPage + 1);
-                    }
-                }
-            }
-        });
-
-        loadCategories();
     }
 
     private void loadCategories() {
-        // Mock data for categories
-        List<Category> categories = new ArrayList<>();
-        categories.add(new Category("1", "Beef"));
-        categories.add(new Category("2", "Chicken"));
-        categories.add(new Category("3", "Dessert"));
-        categories.add(new Category("4", "Drink"));
-        categories.add(new Category("5", "Pork"));
-        categoryAdapter.setItems(categories);
-
-        if (!categories.isEmpty()) {
-            // auto select first
-            selectedCategoryId = categories.get(0).id;
-            currentPage = 1;
-            productAdapter.clear();
-            loadProducts(selectedCategoryId, currentPage);
-        }
-    }
-
-    private void loadProducts(String categoryId, int page) {
-        if (categoryId == null) return;
-        isLoading = true;
         progressBar.setVisibility(View.VISIBLE);
-        api.getProductsByCategory(categoryId, page, pageSize, "price_asc").enqueue(new Callback<PagedResponse<Product>>() {
+        api.getCategories().enqueue(new Callback<List<Category>>() {
             @Override
-            public void onResponse(Call<PagedResponse<Product>> call, Response<PagedResponse<Product>> response) {
+            public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
                 progressBar.setVisibility(View.GONE);
-                isLoading = false;
-                if (response.isSuccessful()) {
-                    PagedResponse<Product> body = response.body();
-                    if (body != null && body.items != null) {
-                        if (page == 1) productAdapter.clear();
-                        productAdapter.addItems(body.items);
-                        currentPage = body.page;
-                        isLastPage = body.page >= body.totalPages;
-                    }
+                if (response.isSuccessful() && response.body() != null) {
+                    categoryAdapter.setItems(response.body());
                 } else {
-                    Toast.makeText(MainActivity.this, "Không thể tải sản phẩm", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Failed to load categories", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<PagedResponse<Product>> call, Throwable t) {
+            public void onFailure(Call<List<Category>> call, Throwable t) {
                 progressBar.setVisibility(View.GONE);
-                isLoading = false;
-                Toast.makeText(MainActivity.this, "Lỗi mạng khi tải sản phẩm", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Network Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void loadAllProducts() {
+        progressBar.setVisibility(View.VISIBLE);
+        api.getAllBooks().enqueue(new Callback<List<Product>>() {
+            @Override
+            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                progressBar.setVisibility(View.GONE);
+                if (response.isSuccessful() && response.body() != null) {
+                    productAdapter.setItems(response.body());
+                } else {
+                    Toast.makeText(MainActivity.this, "Failed to load books", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Product>> call, Throwable t) {
+                progressBar.setVisibility(View.GONE);
+                Toast.makeText(MainActivity.this, "Network Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void loadProductsByCategory(String categoryName) {
+        progressBar.setVisibility(View.VISIBLE);
+        api.getBooksByCategory(categoryName).enqueue(new Callback<List<Product>>() {
+            @Override
+            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                progressBar.setVisibility(View.GONE);
+                if (response.isSuccessful() && response.body() != null) {
+                    productAdapter.setItems(response.body());
+                } else {
+                    Toast.makeText(MainActivity.this, "Failed to load books for category: " + categoryName, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Product>> call, Throwable t) {
+                progressBar.setVisibility(View.GONE);
+                Toast.makeText(MainActivity.this, "Network Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

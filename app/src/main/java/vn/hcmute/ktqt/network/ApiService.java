@@ -8,12 +8,9 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 import vn.hcmute.ktqt.models.AuthResponse;
 import vn.hcmute.ktqt.models.Category;
-import vn.hcmute.ktqt.models.PagedResponse;
 import vn.hcmute.ktqt.models.Product;
-import vn.hcmute.ktqt.models.User;
 import vn.hcmute.ktqt.models.requests.LoginRequest;
 import vn.hcmute.ktqt.models.requests.OtpRequest;
 import vn.hcmute.ktqt.models.requests.RegisterRequest;
@@ -21,17 +18,18 @@ import vn.hcmute.ktqt.models.requests.SendOtpRequest;
 
 public interface ApiService {
 
-    // Corrected Paths
+    // --- Category APIs ---
     @GET("api/categories")
     Call<List<Category>> getCategories();
 
-    @GET("api/categories/{id}/products")
-    Call<PagedResponse<Product>> getProductsByCategory(@Path("id") String categoryId,
-                                                       @Query("page") int page,
-                                                       @Query("pageSize") int pageSize,
-                                                       @Query("sort") String sort);
+    // --- Book/Product APIs ---
+    @GET("api/books")
+    Call<List<Product>> getAllBooks();
 
-    // Corrected Paths
+    @GET("api/books/category/{name}")
+    Call<List<Product>> getBooksByCategory(@Path("name") String categoryName);
+
+    // --- Auth APIs ---
     @POST("api/register")
     Call<Void> register(@Body RegisterRequest body);
 
@@ -43,6 +41,4 @@ public interface ApiService {
 
     @POST("api/send-otp")
     Call<Void> sendOtp(@Body SendOtpRequest body);
-
-    Call<List<Category>> getAllCategories();
 }
