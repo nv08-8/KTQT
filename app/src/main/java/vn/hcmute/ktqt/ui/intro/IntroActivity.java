@@ -1,3 +1,4 @@
+//Vo Nguyen Quynh Nhu - 23162074
 package vn.hcmute.ktqt.ui.intro;
 
 import android.content.Intent;

@@ -25,8 +25,8 @@ app.get("/test", async (req, res) => {
   }
 });
 
-// Register endpoint
-app.post('/api/register', async (req, res) => {
+// Extract handlers so we can mount them under multiple routes (/api/* and /auth/*)
+const registerHandler = async (req, res) => {
   try {
     const { name, email, password, phone } = req.body;
     if (!name || !email || !password) return res.status(400).json({ message: 'Missing required fields' });
@@ -55,10 +55,9 @@ app.post('/api/register', async (req, res) => {
     console.error('/api/register error:', error);
     res.status(500).json({ message: error.message });
   }
-});
+};
 
-// Login endpoint
-app.post('/api/login', async (req, res) => {
+const loginHandler = async (req, res) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) return res.status(400).json({ message: 'Missing email or password' });
@@ -77,7 +76,15 @@ app.post('/api/login', async (req, res) => {
     console.error('/api/login error:', error);
     res.status(500).json({ message: error.message });
   }
-});
+};
+
+// Register endpoints (mounted under both /api and /auth for compatibility with the Android app)
+app.post('/api/register', registerHandler);
+app.post('/auth/register', registerHandler);
+
+// Login endpoints
+app.post('/api/login', loginHandler);
+app.post('/auth/login', loginHandler);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

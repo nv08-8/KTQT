@@ -1,3 +1,4 @@
+//Vo Nguyen Quynh Nhu - 23162074
 package vn.hcmute.ktqt.ui.auth;
 
 import android.content.Intent;
@@ -13,12 +14,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import vn.hcmute.ktqt.R;
 import vn.hcmute.ktqt.models.requests.RegisterRequest;
+import vn.hcmute.ktqt.models.requests.SendOtpRequest;
 import vn.hcmute.ktqt.network.ApiService;
 import vn.hcmute.ktqt.network.RetrofitClient;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText etUsername, etEmail, etPhone, etPassword;
+    private EditText etFullName, etEmail, etPhone, etPassword;
     private Button btnRegister;
     private ApiService api;
 
@@ -27,10 +29,10 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        etUsername = findViewById(R.id.etUsername);
-        etEmail = findViewById(R.id.etEmail);
-        etPhone = findViewById(R.id.etPhone);
-        etPassword = findViewById(R.id.etPassword);
+        etFullName = findViewById(R.id.edtFullName);
+        etEmail = findViewById(R.id.edtEmail);
+        etPhone = findViewById(R.id.edtPhoneNumber);
+        etPassword = findViewById(R.id.edtPassword);
         btnRegister = findViewById(R.id.btnRegister);
 
         api = RetrofitClient.getClient(this).create(ApiService.class);
@@ -39,7 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void doRegister() {
-        String u = etUsername.getText().toString().trim();
+        String u = etFullName.getText().toString().trim();
         String email = etEmail.getText().toString().trim();
         String phone = etPhone.getText().toString().trim();
         String p = etPassword.getText().toString().trim();
@@ -54,12 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-                    // assume backend returns 200 and sends OTP to phone/email; navigate to OTP screen
-                    Intent it = new Intent(RegisterActivity.this, RegisterOtpActivity.class);
-                    // if backend returns a userId, pass it via intent extras; for now we'll pass username as identifier
-                    it.putExtra("userIdentifier", u);
-                    startActivity(it);
-                    finish();
+                    sendOtp(email, u);
                 } else {
                     Toast.makeText(RegisterActivity.this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
                 }
@@ -71,5 +68,27 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
-}
 
+    private void sendOtp(String email, String userIdentifier) {
+        SendOtpRequest req = new SendOtpRequest(email);
+        api.sendOtp(req).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(RegisterActivity.this, "Mã OTP đã được gửi tới email của bạn", Toast.LENGTH_SHORT).show();
+                    Intent it = new Intent(RegisterActivity.this, RegisterOtpActivity.class);
+                    it.putExtra("userIdentifier", userIdentifier);
+                    startActivity(it);
+                    finish();
+                } else {
+                    Toast.makeText(RegisterActivity.this, "Gửi OTP thất bại", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(RegisterActivity.this, "Lỗi mạng khi gửi OTP", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+}
