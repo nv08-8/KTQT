@@ -114,19 +114,35 @@
                     android:orientation="vertical"
                     android:padding="16dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Thông tin cá nhân"
-                        android:textColor="#5D4037"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Thông tin cá nhân"
+                            android:textColor="#5D4037"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnEdit"
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Chỉnh sửa"
+                            android:textColor="@color/colorPrimary" />
+                    </LinearLayout>
 
                     <TextView
-                        android:layout_marginTop="16dp"
                         android:id="@+id/tvNameLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
                         android:text="Name:"
                         android:textStyle="bold" />
 
@@ -137,10 +153,10 @@
                         tools:text="John Doe" />
 
                     <TextView
-                        android:layout_marginTop="16dp"
                         android:id="@+id/tvEmailLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
                         android:text="Email:"
                         android:textStyle="bold" />
 

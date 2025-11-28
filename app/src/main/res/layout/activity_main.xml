@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
     <!-- Main Content Area -->
@@ -17,6 +18,7 @@
             android:id="@+id/header"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:padding="16dp"
@@ -66,6 +68,7 @@
             android:id="@+id/rvCategories"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:orientation="horizontal"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
@@ -79,6 +82,7 @@
             android:id="@+id/rvBooks"
             android:layout_width="0dp"
             android:layout_height="0dp"
+
             android:clipToPadding="false"
             android:padding="8dp"
             android:paddingBottom="80dp"
@@ -224,8 +228,10 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:contentDescription="Shopping Cart"
         android:src="@drawable/ic_shopping_cart"
+        app:backgroundTint="#F64545"
         app:layout_anchor="@id/bottomAppBar" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

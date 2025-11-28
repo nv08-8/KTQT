@@ -346,6 +346,16 @@
 
             </com.google.android.material.card.MaterialCardView>
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Đăng xuất"
+                app:backgroundTint="@color/colorPrimary"
+                android:textColor="@color/white"
+                app:cornerRadius="16dp"/>
+
         </LinearLayout>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

@@ -3,6 +3,7 @@ package vn.hcmute.ktqt;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,12 +12,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 
+import vn.hcmute.ktqt.data.SessionManager;
 import vn.hcmute.ktqt.model.User;
 
 public class ProfileActivity extends AppCompatActivity {
 
     private TextView tvName, tvUsername;
     private ImageView imgAvatar, btnSettings;
+    private Button btnLogout;
+    private SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +31,8 @@ public class ProfileActivity extends AppCompatActivity {
         tvUsername = findViewById(R.id.tvUsername);
         imgAvatar = findViewById(R.id.imgAvatar);
         btnSettings = findViewById(R.id.btnSettings);
+        btnLogout = findViewById(R.id.btnLogout);
+        sessionManager = new SessionManager(this);
 
         Intent intent = getIntent();
         String name = intent.getStringExtra("USER_NAME");
@@ -42,6 +48,14 @@ public class ProfileActivity extends AppCompatActivity {
             settingsIntent.putExtra("USER_EMAIL", email);
             settingsIntent.putExtra("USER_AVATAR", avatarUrl);
             startActivity(settingsIntent);
+        });
+
+        btnLogout.setOnClickListener(v -> {
+            sessionManager.clear();
+            Intent mainIntent = new Intent(ProfileActivity.this, MainActivity.class);
+            mainIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(mainIntent);
+            finish();
         });
 
         if (avatarUrl != null && !avatarUrl.isEmpty()) {
