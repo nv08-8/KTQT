@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,8 +18,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.bumptech.glide.Glide;
+
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,12 +48,14 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView rvBooks;
     private ProgressBar progressBar;
     private Button btnLogout;
+    private TextView tvName, tvEmail;
+    private ImageView ivAvatar;
 
     private int currentPage = 1;
     private final int pageSize = 20;
     private boolean isLoading = false;
     private boolean isLastPage = false;
-    private String selectedCategoryId = null;
+    private String selectedCategoryName = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,10 +71,17 @@ public class MainActivity extends AppCompatActivity {
         session = new SessionManager(this);
         api = RetrofitClient.getClient(this).create(ApiService.class);
 
+        // Bind views
         rvCategories = findViewById(R.id.rvCategories);
         rvBooks = findViewById(R.id.rvBooks);
         progressBar = findViewById(R.id.progressBar);
         btnLogout = findViewById(R.id.btnLogout);
+        tvName = findViewById(R.id.tvName);
+        tvEmail = findViewById(R.id.tvEmail);
+        ivAvatar = findViewById(R.id.ivAvatar);
+
+        // Load user info
+        loadUserInfo();
 
         findViewById(R.id.profileBtn).setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
@@ -83,12 +96,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         categoryAdapter = new CategoryAdapter(category -> {
-            // on category click
-            selectedCategoryId = category.id;
+            selectedCategoryName = category.name;
             currentPage = 1;
             isLastPage = false;
             bookAdapter.clear();
-            loadBooks(selectedCategoryId, currentPage);
+            loadBooks(selectedCategoryName, currentPage);
         });
 
         rvCategories.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
@@ -110,13 +122,31 @@ public class MainActivity extends AppCompatActivity {
 
                 if (!isLoading && !isLastPage) {
                     if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount - 4) {
-                        loadBooks(selectedCategoryId, currentPage + 1);
+                        loadBooks(selectedCategoryName, currentPage + 1);
                     }
                 }
             }
         });
 
         loadCategories();
+    }
+
+    private void loadUserInfo() {
+        Map<String, Object> user = session.getUser();
+        if (user != null) {
+            String name = (String) user.get("name");
+            String email = (String) user.get("email");
+            String avatarUrl = (String) user.get("ava");
+
+            tvName.setText(name != null ? name : "");
+            tvEmail.setText(email != null ? email : "");
+
+            if (avatarUrl != null && !avatarUrl.isEmpty()) {
+                Glide.with(this).load(avatarUrl).circleCrop().into(ivAvatar);
+            } else {
+                ivAvatar.setImageResource(R.mipmap.ic_launcher); // Default avatar
+            }
+        }
     }
 
     private void loadCategories() {
@@ -128,12 +158,11 @@ public class MainActivity extends AppCompatActivity {
                     categoryAdapter.setItems(categories);
 
                     if (!categories.isEmpty()) {
-                        // auto select first category and load its books
-                        selectedCategoryId = categories.get(0).id;
+                        selectedCategoryName = categories.get(0).name;
                         currentPage = 1;
                         isLastPage = false;
                         bookAdapter.clear();
-                        loadBooks(selectedCategoryId, currentPage);
+                        loadBooks(selectedCategoryName, currentPage);
                     }
                 } else {
                     Toast.makeText(MainActivity.this, "Không thể tải danh mục", Toast.LENGTH_SHORT).show();
@@ -147,11 +176,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void loadBooks(String categoryId, int page) {
-        if (categoryId == null) return;
+    private void loadBooks(String categoryName, int page) {
+        if (categoryName == null) return;
         isLoading = true;
         progressBar.setVisibility(View.VISIBLE);
-        api.getBooksByCategory(categoryId, page, pageSize, "price_asc").enqueue(new Callback<PagedResponse<Book>>() {
+        api.getBooksByCategory(categoryName, page, pageSize, "price_asc").enqueue(new Callback<PagedResponse<Book>>() {
             @Override
             public void onResponse(Call<PagedResponse<Book>> call, Response<PagedResponse<Book>> response) {
                 progressBar.setVisibility(View.GONE);
