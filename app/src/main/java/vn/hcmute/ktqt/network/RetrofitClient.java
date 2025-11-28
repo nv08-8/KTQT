@@ -13,7 +13,8 @@ import vn.hcmute.ktqt.data.SessionManager;
 import java.util.concurrent.TimeUnit;
 
 public class RetrofitClient {
-    private static final String BASE_URL = "https://api.example.com/"; // TODO: change
+    // Use the emulator loopback address to reach the host machine's backend during development
+    private static final String BASE_URL = "http://10.0.2.2:3000/"; // was: "https://api.uteboo.com/" // TODO: use BuildConfig for env-specific URLs
     private static Retrofit retrofit;
 
     public static Retrofit getClient(Context context) {
@@ -49,4 +50,3 @@ public class RetrofitClient {
         return retrofit;
     }
 }
-
