@@ -1,17 +1,11 @@
 package vn.hcmute.ktqt;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,7 +17,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import vn.hcmute.ktqt.adapters.CategoryAdapter;
 import vn.hcmute.ktqt.adapters.ProductAdapter;
-import vn.hcmute.ktqt.data.SessionManager;
 import vn.hcmute.ktqt.models.Category;
 import vn.hcmute.ktqt.models.PagedResponse;
 import vn.hcmute.ktqt.models.Product;
@@ -32,9 +25,7 @@ import vn.hcmute.ktqt.network.RetrofitClient;
 
 public class MainActivity extends AppCompatActivity {
 
-    private SessionManager session;
     private ApiService api;
-
     private CategoryAdapter categoryAdapter;
     private ProductAdapter productAdapter;
 
@@ -51,37 +42,36 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-
-        session = new SessionManager(this);
         api = RetrofitClient.getClient(this).create(ApiService.class);
 
         rvCategories = findViewById(R.id.rvCategories);
         rvProducts = findViewById(R.id.rvProducts);
         progressBar = findViewById(R.id.progressBar);
 
+        setupCategoryRecyclerView();
+        setupProductRecyclerView();
+
+        loadCategories();
+    }
+
+    private void setupCategoryRecyclerView() {
+        rvCategories.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         categoryAdapter = new CategoryAdapter(category -> {
-            // on category click
             selectedCategoryId = category.id;
             currentPage = 1;
             isLastPage = false;
             productAdapter.clear();
             loadProducts(selectedCategoryId, currentPage);
         });
-
-        rvCategories.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         rvCategories.setAdapter(categoryAdapter);
+    }
 
+    private void setupProductRecyclerView() {
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+        rvProducts.setLayoutManager(gridLayoutManager);
         productAdapter = new ProductAdapter();
-        GridLayoutManager gm = new GridLayoutManager(this, 2);
-        rvProducts.setLayoutManager(gm);
         rvProducts.setAdapter(productAdapter);
 
         rvProducts.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -89,9 +79,9 @@ public class MainActivity extends AppCompatActivity {
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 if (dy <= 0) return;
-                int visibleItemCount = gm.getChildCount();
-                int totalItemCount = gm.getItemCount();
-                int firstVisibleItemPosition = gm.findFirstVisibleItemPosition();
+                int visibleItemCount = gridLayoutManager.getChildCount();
+                int totalItemCount = gridLayoutManager.getItemCount();
+                int firstVisibleItemPosition = gridLayoutManager.findFirstVisibleItemPosition();
 
                 if (!isLoading && !isLastPage) {
                     if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount - 4) {
@@ -100,25 +90,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-        Button btnLogout = findViewById(R.id.btnLogout);
-        btnLogout.setOnClickListener(v -> {
-            session.clear();
-            startActivity(new Intent(MainActivity.this, vn.hcmute.ktqt.ui.auth.LoginActivity.class));
-            finish();
-        });
-
-        // Load data
-        loadCategories();
-
-        // If not logged in, navigate to login
-        if (!session.isLoggedIn()) {
-            startActivity(new Intent(this, vn.hcmute.ktqt.ui.auth.LoginActivity.class));
-            finish();
-            return;
-        }
-
-        // Optionally load profile (not implemented) and UI updates
     }
 
     private void loadCategories() {
@@ -127,25 +98,25 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
                 progressBar.setVisibility(View.GONE);
-                if (response.isSuccessful()) {
-                    List<Category> cats = response.body();
-                    categoryAdapter.setItems(cats);
-                    if (cats != null && !cats.isEmpty()) {
-                        // auto select first
-                        selectedCategoryId = cats.get(0).id;
-                        currentPage = 1;
-                        productAdapter.clear();
-                        loadProducts(selectedCategoryId, currentPage);
+                if (response.isSuccessful() && response.body() != null) {
+                    List<Category> categories = response.body();
+                    categoryAdapter.setItems(categories);
+                    if (!categories.isEmpty()) {
+                        // Auto-select the first category
+                        categories.get(0).isSelected = true;
+                        categoryAdapter.notifyDataSetChanged();
+                        selectedCategoryId = categories.get(0).id;
+                        loadProducts(selectedCategoryId, 1);
                     }
                 } else {
-                    Toast.makeText(MainActivity.this, "Không thể tải categories", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Failed to load categories", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<Category>> call, Throwable t) {
                 progressBar.setVisibility(View.GONE);
-                Toast.makeText(MainActivity.this, "Lỗi mạng khi tải categories", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Network error while loading categories", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -159,16 +130,16 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<PagedResponse<Product>> call, Response<PagedResponse<Product>> response) {
                 progressBar.setVisibility(View.GONE);
                 isLoading = false;
-                if (response.isSuccessful()) {
-                    PagedResponse<Product> body = response.body();
-                    if (body != null && body.items != null) {
-                        if (page == 1) productAdapter.clear();
-                        productAdapter.addItems(body.items);
-                        currentPage = body.page;
-                        isLastPage = body.page >= body.totalPages;
+                if (response.isSuccessful() && response.body() != null) {
+                    PagedResponse<Product> pagedResponse = response.body();
+                    if (page == 1) {
+                        productAdapter.clear();
                     }
+                    productAdapter.addItems(pagedResponse.items);
+                    currentPage = pagedResponse.page;
+                    isLastPage = pagedResponse.page >= pagedResponse.totalPages;
                 } else {
-                    Toast.makeText(MainActivity.this, "Không thể tải sản phẩm", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Failed to load products", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -176,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
             public void onFailure(Call<PagedResponse<Product>> call, Throwable t) {
                 progressBar.setVisibility(View.GONE);
                 isLoading = false;
-                Toast.makeText(MainActivity.this, "Lỗi mạng khi tải sản phẩm", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Network error while loading products", Toast.LENGTH_SHORT).show();
             }
         });
     }

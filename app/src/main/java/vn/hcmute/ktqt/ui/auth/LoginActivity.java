@@ -34,8 +34,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        etUsername = findViewById(R.id.etUsername);
-        etPassword = findViewById(R.id.etPassword);
+        etUsername = findViewById(R.id.edtEmail);
+        etPassword = findViewById(R.id.edtPassword);
         btnLogin = findViewById(R.id.btnLogin);
         tvRegister = findViewById(R.id.tvRegister);
 
@@ -74,4 +74,3 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 }
-

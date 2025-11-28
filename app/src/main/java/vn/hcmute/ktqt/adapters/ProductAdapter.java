@@ -61,10 +61,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.VH> {
 
         public VH(@NonNull View itemView) {
             super(itemView);
-            thumb = itemView.findViewById(R.id.ivThumb);
-            title = itemView.findViewById(R.id.tvTitle);
-            price = itemView.findViewById(R.id.tvPrice);
+            thumb = itemView.findViewById(R.id.ivProductImage);
+            title = itemView.findViewById(R.id.tvProductTitle);
+            price = itemView.findViewById(R.id.tvProductPrice);
         }
     }
 }
-

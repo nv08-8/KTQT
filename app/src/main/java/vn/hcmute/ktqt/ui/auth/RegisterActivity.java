@@ -27,10 +27,10 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        etUsername = findViewById(R.id.etUsername);
-        etEmail = findViewById(R.id.etEmail);
-        etPhone = findViewById(R.id.etPhone);
-        etPassword = findViewById(R.id.etPassword);
+        etUsername = findViewById(R.id.edtFullName);
+        etEmail = findViewById(R.id.edtEmail);
+        etPhone = findViewById(R.id.edtPhoneNumber);
+        etPassword = findViewById(R.id.edtPassword);
         btnRegister = findViewById(R.id.btnRegister);
 
         api = RetrofitClient.getClient(this).create(ApiService.class);
@@ -72,4 +72,3 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 }
-
