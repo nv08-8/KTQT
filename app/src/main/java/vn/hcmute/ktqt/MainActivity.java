@@ -24,7 +24,7 @@ import vn.hcmute.ktqt.adapters.CategoryAdapter;
 import vn.hcmute.ktqt.adapters.ProductAdapter;
 import vn.hcmute.ktqt.data.SessionManager;
 import vn.hcmute.ktqt.models.Category;
-import vn.hcmute.ktqt.models.PagedResponse;
+import vn.hcmute.ktqt.models.responses.PagedResponse;
 import vn.hcmute.ktqt.models.Product;
 import vn.hcmute.ktqt.network.ApiService;
 import vn.hcmute.ktqt.network.RetrofitClient;

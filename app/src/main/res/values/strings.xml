@@ -22,4 +22,10 @@
 
     <!-- Added slogan used by activity_splash.xml -->
     <string name="slogan">Một nơi tìm sách yêu thích</string>
+    <string name="back_button">Back</string>
+    <string name="reset_password_title">Reset Password</string>
+    <string name="reset_password_instruction">Enter your new password below.</string>
+    <string name="new_password_hint">New Password</string>
+    <string name="confirm_new_password_hint">Confirm New Password</string>
+    <string name="confirm">Confirm</string>
 </resources>
