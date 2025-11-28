@@ -11,4 +11,4 @@ const productSchema = new mongoose.Schema({
 });
 
 // The third argument specifies the exact collection name 'product' in your MongoDB.
-module.exports = mongoose.model("Product", productSchema, "product");
+module.exports = mongoose.model("Book", productSchema, "books");

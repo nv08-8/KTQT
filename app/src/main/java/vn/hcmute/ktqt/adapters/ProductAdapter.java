@@ -20,6 +20,18 @@ import vn.hcmute.ktqt.models.Product;
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.VH> {
     private final List<Product> items = new ArrayList<>();
 
+    /**
+     * Replaces the existing data with a new list of products.
+     * @param products The new list of products to display.
+     */
+    public void setItems(List<Product> products) {
+        items.clear();
+        if (products != null) {
+            items.addAll(products);
+        }
+        notifyDataSetChanged();
+    }
+
     public void addItems(List<Product> products) {
         int start = items.size();
         items.addAll(products);
