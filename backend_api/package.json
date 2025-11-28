@@ -1,0 +1,14 @@
+{
+  "name": "ktqt-server",
+  "version": "1.0.0",
+  "description": "Minimal Node.js server for the KTQT book app",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.6.1"
+  }
+}
+
