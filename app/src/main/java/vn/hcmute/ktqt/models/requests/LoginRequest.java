@@ -2,12 +2,12 @@
 package vn.hcmute.ktqt.models.requests;
 
 public class LoginRequest {
-    public String username;
+    // send 'email' key instead of 'username' to match backend
+    public String email;
     public String password;
 
-    public LoginRequest(String username, String password) {
-        this.username = username;
+    public LoginRequest(String email, String password) {
+        this.email = email;
         this.password = password;
     }
 }
-
