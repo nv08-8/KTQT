@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,8 +18,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.bumptech.glide.Glide;
+
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,12 +48,14 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView rvBooks;
     private ProgressBar progressBar;
     private Button btnLogout;
+    private TextView tvName, tvEmail;
+    private ImageView ivAvatar;
 
     private int currentPage = 1;
     private final int pageSize = 20;
     private boolean isLoading = false;
     private boolean isLastPage = false;
-    private String selectedCategoryName = null; // Changed from selectedCategoryId
+    private String selectedCategoryName = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,10 +71,17 @@ public class MainActivity extends AppCompatActivity {
         session = new SessionManager(this);
         api = RetrofitClient.getClient(this).create(ApiService.class);
 
+        // Bind views
         rvCategories = findViewById(R.id.rvCategories);
         rvBooks = findViewById(R.id.rvBooks);
         progressBar = findViewById(R.id.progressBar);
         btnLogout = findViewById(R.id.btnLogout);
+        tvName = findViewById(R.id.tvName);
+        tvEmail = findViewById(R.id.tvEmail);
+        ivAvatar = findViewById(R.id.ivAvatar);
+
+        // Load user info
+        loadUserInfo();
 
         btnLogout.setOnClickListener(v -> {
             session.clear();
@@ -78,8 +91,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         categoryAdapter = new CategoryAdapter(category -> {
-            // on category click
-            selectedCategoryName = category.name; // Use category.name instead of category.id
+            selectedCategoryName = category.name;
             currentPage = 1;
             isLastPage = false;
             bookAdapter.clear();
@@ -114,6 +126,24 @@ public class MainActivity extends AppCompatActivity {
         loadCategories();
     }
 
+    private void loadUserInfo() {
+        Map<String, Object> user = session.getUser();
+        if (user != null) {
+            String name = (String) user.get("name");
+            String email = (String) user.get("email");
+            String avatarUrl = (String) user.get("ava");
+
+            tvName.setText(name != null ? name : "");
+            tvEmail.setText(email != null ? email : "");
+
+            if (avatarUrl != null && !avatarUrl.isEmpty()) {
+                Glide.with(this).load(avatarUrl).circleCrop().into(ivAvatar);
+            } else {
+                ivAvatar.setImageResource(R.mipmap.ic_launcher); // Default avatar
+            }
+        }
+    }
+
     private void loadCategories() {
         api.getAllCategories().enqueue(new Callback<List<Category>>() {
             @Override
@@ -123,8 +153,7 @@ public class MainActivity extends AppCompatActivity {
                     categoryAdapter.setItems(categories);
 
                     if (!categories.isEmpty()) {
-                        // auto select first category and load its books
-                        selectedCategoryName = categories.get(0).name; // Use name
+                        selectedCategoryName = categories.get(0).name;
                         currentPage = 1;
                         isLastPage = false;
                         bookAdapter.clear();
@@ -142,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void loadBooks(String categoryName, int page) { // Changed parameter name
+    private void loadBooks(String categoryName, int page) {
         if (categoryName == null) return;
         isLoading = true;
         progressBar.setVisibility(View.VISIBLE);
