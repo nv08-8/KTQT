@@ -191,20 +191,19 @@ router.post("/forgot-password", async (req, res) => {
             return res.status(502).json({ message: 'Gửi email thất bại. Vui lòng thử lại sau.' });
         }
     } catch (err) {
-        console.error("Lỗi forgot password:", err);
-        return res.status(500).json({ message: "Lỗi phía server." });
+        console.error("Lỗi gửi OTP quên mật khẩu:", err);
+        res.status(500).json({ message: "Lỗi phía server." });
     }
 });
 
 router.post("/reset-password", async (req, res) => {
-    // Make sure client sends email, otp, and newPassword
-    const { email, otp, newPassword } = req.body;
-    if (!email || !otp || !newPassword) {
+    const { email, otp, password } = req.body;
+    if (!email || !otp || !password) {
         return res.status(400).json({ message: "Thiếu thông tin!" });
     }
 
     try {
-        const hashedPassword = await bcrypt.hash(newPassword, SALT_ROUNDS);
+        const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
         const user = await User.findOneAndUpdate(
             { email, otp_code: otp, status: 'active' },
             { password: hashedPassword, otp_code: null },
