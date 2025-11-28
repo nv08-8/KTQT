@@ -92,7 +92,7 @@
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
-            android.layout_height="wrap_content"
+            android:layout_height="wrap_content"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -174,7 +174,7 @@
             <LinearLayout
                 android:id="@+id/supportBtn"
                 android:layout_width="0dp"
-                android.layout_height="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="0.2"
                 android:gravity="center"
                 android:orientation="vertical">
