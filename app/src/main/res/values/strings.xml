@@ -20,7 +20,6 @@
     <string name="login_prompt">Already have an account?</string>
     <string name="login_link">Login</string>
 
-    <!-- Added slogan used by activity_splash.xml -->
     <string name="slogan">Một nơi tìm sách yêu thích</string>
     <string name="back_button">Back</string>
     <string name="reset_password_title">Reset Password</string>
