@@ -179,7 +179,7 @@ app.get("/api/books", async (req, res) => {
 // Books by category
 app.get("/api/books/category/:name", async (req, res) => {
   try {
-    const books = await Book.find({ category: req.params.name });
+    const books = await Book.find({ category: req.params.name }).sort({ price: 1 });
     res.json(books);
   } catch (error) {
     res.status(500).json({ message: error.message });
