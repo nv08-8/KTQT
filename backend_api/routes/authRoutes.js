@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
-const sendEmail = require("../utils/sendOtp");
+const sendOtp = require("../utils/sendOtp");
 const SALT_ROUNDS = 10;
 const jwt = require('jsonwebtoken');
 const JWT_SECRET = process.env.JWT_SECRET || 'dev_jwt_secret_change_me';
@@ -18,6 +18,7 @@ router.post("/send-otp", async (req, res) => {
     try {
         let user = await User.findOne({ email });
 
+        let createdNewUser = false;
         if (!user) {
             user = new User({
                 email,
@@ -27,6 +28,7 @@ router.post("/send-otp", async (req, res) => {
                 status: 'inactive'
             });
             await user.save();
+            createdNewUser = true;
         } else {
             if (user.status === "active") {
                 return res.status(400).json({ message: "Email đã tồn tại!" });
@@ -35,9 +37,34 @@ router.post("/send-otp", async (req, res) => {
             await user.save();
         }
 
-        res.json({ message: "OTP đã được gửi đến email!" });
-        sendEmail(email, "Mã OTP đăng ký", `Mã OTP của bạn là: ${otp}`)
-            .catch(emailErr => console.error("Gửi email thất bại:", emailErr));
+        // Attempt to send email and wait for result; if it fails, rollback the created user or clear otp
+        try {
+            await sendOtp(email, "Mã OTP đăng ký", `Mã OTP của bạn là: ${otp}`);
+            return res.json({ message: "OTP đã được gửi đến email!" });
+        } catch (emailErr) {
+            console.error("Gửi email thất bại:", emailErr);
+            // Rollback: if we created a new user, remove it to avoid stale inactive users
+            if (createdNewUser) {
+                try { await User.deleteOne({ _id: user._id }); } catch (delErr) { console.error('Rollback delete failed:', delErr); }
+            } else {
+                // Clear the otp_code if it was updated
+                try { user.otp_code = null; await user.save(); } catch (clearErr) { console.error('Clearing OTP failed:', clearErr); }
+            }
+
+            // If the error message indicates missing SendGrid config, return 500 with a helpful message
+            if (emailErr.message && emailErr.message.includes('SENDGRID_API_KEY')) {
+                return res.status(500).json({ message: 'Server email configuration error. Please contact the administrator.' });
+            }
+
+            // Map SendGrid 401/Unauthorized to 502 Bad Gateway to indicate third-party failure
+            const statusCode = emailErr.code || emailErr.statusCode || emailErr.response?.status || emailErr.response?.statusCode;
+            if (statusCode === 401) {
+                console.error('SendGrid returned 401 Unauthorized');
+                return res.status(502).json({ message: 'Gửi email thất bại: Unauthorized with SendGrid.' });
+            }
+
+            return res.status(502).json({ message: 'Gửi email thất bại. Vui lòng thử lại sau.' });
+        }
     } catch (err) {
         console.error("Lỗi gửi OTP:", err);
         res.status(500).json({ message: "Lỗi phía server." });
@@ -143,9 +170,26 @@ router.post("/forgot-password", async (req, res) => {
             return res.status(404).json({ message: "Email không tồn tại hoặc chưa active!" });
         }
 
-        res.json({ success: true, message: "OTP đã được gửi đến email!" });
-        sendEmail(email, "Mã OTP đặt lại mật khẩu", `Mã OTP của bạn là: ${otp}`)
-            .catch(emailErr => console.error("Gửi email quên mật khẩu thất bại:", emailErr));
+        try {
+            await sendOtp(email, "Mã OTP đặt lại mật khẩu", `Mã OTP của bạn là: ${otp}`);
+            return res.json({ success: true, message: "OTP đã được gửi đến email!" });
+        } catch (emailErr) {
+            console.error('Gửi email quên mật khẩu thất bại:', emailErr);
+            // Clear otp_code since email failed
+            try { user.otp_code = null; await user.save(); } catch (clearErr) { console.error('Clearing OTP failed:', clearErr); }
+
+            if (emailErr.message && emailErr.message.includes('SENDGRID_API_KEY')) {
+                return res.status(500).json({ message: 'Server email configuration error. Please contact the administrator.' });
+            }
+
+            const statusCode = emailErr.code || emailErr.statusCode || emailErr.response?.status || emailErr.response?.statusCode;
+            if (statusCode === 401) {
+                console.error('SendGrid returned 401 Unauthorized');
+                return res.status(502).json({ message: 'Gửi email thất bại: Unauthorized with SendGrid.' });
+            }
+
+            return res.status(502).json({ message: 'Gửi email thất bại. Vui lòng thử lại sau.' });
+        }
     } catch (err) {
         console.error("Lỗi forgot password:", err);
         return res.status(500).json({ message: "Lỗi phía server." });

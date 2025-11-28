@@ -17,6 +17,14 @@ app.use((req, res, next) => {
     next();
 });
 
+// Warn if SendGrid not configured properly
+if (!process.env.SENDGRID_API_KEY) {
+    console.warn('⚠️ SENDGRID_API_KEY is not set. Email sending will fail. Set it in backend_api/.env or environment variables.');
+}
+if (!process.env.SENDGRID_FROM) {
+    console.warn('⚠️ SENDGRID_FROM is not set. Using fallback sender address.');
+}
+
 // API routes
 app.use('/api', authRoutes);
 
