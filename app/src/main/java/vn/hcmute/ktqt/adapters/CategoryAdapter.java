@@ -75,7 +75,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         public void bind(final Category category, final OnItemClickListener listener) {
             tvCategoryName.setText(category.name);
             Glide.with(itemView.getContext())
-                    .load(category.iconUrl)
+                    .load(category.getIconUrl()) // Use getter for consistency
+                    .placeholder(R.drawable.ic_shopping_cart) // Placeholder image
+                    .error(R.drawable.ic_shopping_cart) // Error image
                     .into(ivCategoryIcon);
             itemView.setOnClickListener(v -> listener.onItemClick(category));
         }

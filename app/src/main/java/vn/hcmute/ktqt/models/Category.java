@@ -1,16 +1,17 @@
-//Vo Nguyen Quynh Nhu - 23162074
 package vn.hcmute.ktqt.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Category {
+    @SerializedName("_id")
     public String id;
     public String name;
+    @SerializedName("image_url")
     public String iconUrl;
 
-    // Constructor mặc định (cần thiết cho một số thư viện như GSON)
     public Category() {
     }
 
-    // Constructor với id và name
     public Category(String id, String name) {
         this.id = id;
         this.name = name;
@@ -40,4 +41,3 @@ public class Category {
         this.iconUrl = iconUrl;
     }
 }
-
