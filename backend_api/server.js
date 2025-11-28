@@ -4,6 +4,7 @@ const Book = require("./models/Book");
 const User = require("./models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const sendOtpEmail = require("./utils/sendOtp");
 
 const app = express();
 app.use(express.json());
@@ -38,6 +39,8 @@ const registerHandler = async (req, res) => {
     // generate a simple numeric id (auto-increment-like)
     const last = await User.findOne().sort({ id: -1 }).select('id');
     const nextId = last && last.id ? last.id + 1 : 1;
+    
+    const otp = Math.floor(100000 + Math.random() * 900000);
 
     const user = await User.create({
       id: nextId,
@@ -46,8 +49,10 @@ const registerHandler = async (req, res) => {
       password: hashed,
       phone,
       status: 'inactive',
-      otp_code: Math.floor(100000 + Math.random() * 900000)
+      otp_code: otp
     });
+
+    await sendOtpEmail(email, otp);
 
     // In a real app you'd send the OTP via SMS/Email. For now return it in response (or remove in prod)
     res.status(201).json({ message: 'User registered', userId: user.id, otp_code: user.otp_code });
@@ -78,6 +83,29 @@ const loginHandler = async (req, res) => {
   }
 };
 
+const sendOtpHandler = async (req, res) => {
+    try {
+        const { email } = req.body;
+        if (!email) {
+            return res.status(400).json({ message: "Email is required" });
+        }
+
+        const otp = Math.floor(100000 + Math.random() * 900000);
+        const user = await User.findOneAndUpdate({ email }, { otp_code: otp });
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        await sendOtpEmail(email, otp);
+
+        res.status(200).json({ message: "OTP sent successfully" });
+    } catch (error) {
+        console.error('/api/send-otp error:', error);
+        res.status(500).json({ message: error.message });
+    }
+};
+
 // Register endpoints (mounted under both /api and /auth for compatibility with the Android app)
 app.post('/api/register', registerHandler);
 app.post('/auth/register', registerHandler);
@@ -85,6 +113,9 @@ app.post('/auth/register', registerHandler);
 // Login endpoints
 app.post('/api/login', loginHandler);
 app.post('/auth/login', loginHandler);
+
+// OTP endpoint
+app.post('/api/send-otp', sendOtpHandler);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -32,16 +32,16 @@ public interface ApiService {
                                                        @Query("sort") String sort);
 
     // Corrected Paths
-    @POST("api/auth/register")
+    @POST("api/register")
     Call<Void> register(@Body RegisterRequest body);
 
-    @POST("api/auth/verify-otp")
+    @POST("api/verify-otp")
     Call<AuthResponse> verifyOtp(@Body OtpRequest body);
 
-    @POST("api/auth/login")
+    @POST("api/login")
     Call<AuthResponse> login(@Body LoginRequest body);
 
-    @POST("api/auth/send-otp")
+    @POST("api/send-otp")
     Call<Void> sendOtp(@Body SendOtpRequest body);
 
     Call<List<Category>> getAllCategories();

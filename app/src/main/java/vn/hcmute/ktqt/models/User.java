@@ -2,10 +2,10 @@
 package vn.hcmute.ktqt.models;
 
 public class User {
-    public String id;
-    public String username;
+    public String name;
     public String email;
+    public String password;
     public String phone;
-    public String avatarUrl;
 }
+
 
