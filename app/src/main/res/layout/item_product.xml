@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
+    app:cardBackgroundColor="@color/colorCardBackground"
     app:cardCornerRadius="16dp"
     app:cardElevation="4dp">
 
@@ -38,7 +39,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="$19.99"
-            android:textColor="@color/design_default_color_primary"
+            android:textColor="@color/colorPrimary"
             android:textSize="16sp"
             android:textStyle="bold" />
 
