@@ -3,7 +3,7 @@ package vn.hcmute.ktqt.models;
 
 public class User {
     private int id;
-    private String fullName;
+    private String name;
     private String email;
     private String phoneNumber;
 
@@ -16,12 +16,12 @@ public class User {
         this.id = id;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getName() {
+        return name;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {

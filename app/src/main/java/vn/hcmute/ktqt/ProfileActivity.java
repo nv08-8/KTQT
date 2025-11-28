@@ -16,7 +16,7 @@ import vn.hcmute.ktqt.model.User;
 public class ProfileActivity extends AppCompatActivity {
 
     private TextView tvName, tvUsername;
-    private ImageView imgAvatar;
+    private ImageView imgAvatar, btnSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +26,7 @@ public class ProfileActivity extends AppCompatActivity {
         tvName = findViewById(R.id.tvName);
         tvUsername = findViewById(R.id.tvUsername);
         imgAvatar = findViewById(R.id.imgAvatar);
+        btnSettings = findViewById(R.id.btnSettings);
 
         Intent intent = getIntent();
         String name = intent.getStringExtra("USER_NAME");
@@ -34,6 +35,14 @@ public class ProfileActivity extends AppCompatActivity {
 
         tvName.setText(name);
         tvUsername.setText(email);
+
+        btnSettings.setOnClickListener(v -> {
+            Intent settingsIntent = new Intent(ProfileActivity.this, SettingsActivity.class);
+            settingsIntent.putExtra("USER_NAME", name);
+            settingsIntent.putExtra("USER_EMAIL", email);
+            settingsIntent.putExtra("USER_AVATAR", avatarUrl);
+            startActivity(settingsIntent);
+        });
 
         Glide.with(this)
                 .load(avatarUrl)
