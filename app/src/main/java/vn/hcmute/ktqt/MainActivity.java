@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         api = RetrofitClient.getClient(this).create(ApiService.class);
 
         rvCategories = findViewById(R.id.rvCategories);
-        rvBooks = findViewById(R.id.rvBooks);
+        rvBooks = findViewById(R.id.rvProducts); // Assuming rvProducts is now rvBooks
         progressBar = findViewById(R.id.progressBar);
         btnLogout = findViewById(R.id.btnLogout);
 
