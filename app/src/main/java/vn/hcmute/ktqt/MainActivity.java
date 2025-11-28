@@ -84,7 +84,15 @@ public class MainActivity extends AppCompatActivity {
         loadUserInfo();
 
         findViewById(R.id.profileBtn).setOnClickListener(v -> {
+            Map<String, Object> user = session.getUser();
+            if (user == null) {
+                Toast.makeText(this, "User data not found.", Toast.LENGTH_SHORT).show();
+                return;
+            }
             Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+            intent.putExtra("USER_NAME", (String) user.get("name"));
+            intent.putExtra("USER_EMAIL", (String) user.get("email"));
+            intent.putExtra("USER_AVATAR", (String) user.get("avatar"));
             startActivity(intent);
         });
 

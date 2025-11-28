@@ -62,13 +62,13 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void requestOtpForRegistration() {
-        String fullName = edtFullName.getText().toString().trim();
+        String name = edtFullName.getText().toString().trim();
         String phoneNumber = edtPhoneNumber.getText().toString().trim();
         String email = edtEmail.getText().toString().trim();
         String password = edtPassword.getText().toString().trim();
         String confirmPassword = edtConfirmPassword.getText().toString().trim();
 
-        if (fullName.isEmpty() || phoneNumber.isEmpty() || email.isEmpty() || password.isEmpty()) {
+        if (name.isEmpty() || phoneNumber.isEmpty() || email.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -86,7 +86,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onResponse(Call<Map<String, Object>> call, Response<Map<String, Object>> response) {
                 if (response.isSuccessful()) {
                     Intent intent = new Intent(RegisterActivity.this, OtpVerificationActivity.class);
-                    intent.putExtra("name", fullName);
+                    intent.putExtra("name", name);
                     intent.putExtra("phone", phoneNumber);
                     intent.putExtra("email", email);
                     intent.putExtra("password", password);

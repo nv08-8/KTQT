@@ -31,7 +31,6 @@ public class OtpVerificationActivity extends AppCompatActivity {
     private TextView tvResendOtp;
     private ImageView ivBack;
 
-    // Đổi tên biến để nhất quán
     private String email, phone, name, password, context;
 
     private ApiService apiService;
@@ -52,7 +51,6 @@ public class OtpVerificationActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        // Handle both "email" and "user_email" keys for compatibility
         email = intent.getStringExtra("email");
         if (email == null) {
             email = intent.getStringExtra("user_email");
