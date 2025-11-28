@@ -1,4 +1,3 @@
-//Vo Nguyen Quynh Nhu - 23162074
 package vn.hcmute.ktqt;
 
 import android.content.Intent;
@@ -6,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,12 +26,12 @@ import java.util.Map;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import vn.hcmute.ktqt.adapters.CategoryAdapter;
 import vn.hcmute.ktqt.adapters.BookAdapter;
+import vn.hcmute.ktqt.adapters.CategoryAdapter;
 import vn.hcmute.ktqt.data.SessionManager;
+import vn.hcmute.ktqt.models.Book;
 import vn.hcmute.ktqt.models.Category;
 import vn.hcmute.ktqt.models.responses.PagedResponse;
-import vn.hcmute.ktqt.models.Book;
 import vn.hcmute.ktqt.network.ApiService;
 import vn.hcmute.ktqt.network.RetrofitClient;
 import vn.hcmute.ktqt.ui.intro.IntroActivity;
@@ -80,21 +80,11 @@ public class MainActivity extends AppCompatActivity {
         tvEmail = findViewById(R.id.tvEmail);
         ivAvatar = findViewById(R.id.ivAvatar);
 
+        // Setup navigation
+        setupBottomNavigationBar();
+
         // Load user info
         loadUserInfo();
-
-        findViewById(R.id.profileBtn).setOnClickListener(v -> {
-            Map<String, Object> user = session.getUser();
-            if (user == null) {
-                Toast.makeText(this, "User data not found.", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-            intent.putExtra("USER_NAME", (String) user.get("name"));
-            intent.putExtra("USER_EMAIL", (String) user.get("email"));
-            intent.putExtra("USER_AVATAR", (String) user.get("ava"));
-            startActivity(intent);
-        });
 
         btnLogout.setOnClickListener(v -> {
             session.clear();
@@ -137,6 +127,28 @@ public class MainActivity extends AppCompatActivity {
         });
 
         loadCategories();
+    }
+
+    private void setupBottomNavigationBar() {
+        LinearLayout homeBtn = findViewById(R.id.homeBtn);
+        LinearLayout profileBtn = findViewById(R.id.profileBtn);
+
+        homeBtn.setOnClickListener(v -> {
+            // Do nothing, already on Home
+        });
+
+        profileBtn.setOnClickListener(v -> {
+            Map<String, Object> user = session.getUser();
+            if (user == null) {
+                Toast.makeText(this, "User data not found.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+            intent.putExtra("USER_NAME", (String) user.get("name"));
+            intent.putExtra("USER_EMAIL", (String) user.get("email"));
+            intent.putExtra("USER_AVATAR", (String) user.get("ava"));
+            startActivity(intent);
+        });
     }
 
     private void loadUserInfo() {

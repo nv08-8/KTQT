@@ -5,15 +5,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 
 import vn.hcmute.ktqt.data.SessionManager;
-import vn.hcmute.ktqt.model.User;
+import vn.hcmute.ktqt.ui.intro.IntroActivity;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -52,9 +52,9 @@ public class ProfileActivity extends AppCompatActivity {
 
         btnLogout.setOnClickListener(v -> {
             sessionManager.clear();
-            Intent mainIntent = new Intent(ProfileActivity.this, MainActivity.class);
-            mainIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(mainIntent);
+            Intent introIntent = new Intent(ProfileActivity.this, IntroActivity.class);
+            introIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(introIntent);
             finish();
         });
 
@@ -69,6 +69,21 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
         setupOrderStatusViews();
+        setupBottomNavigationBar();
+    }
+
+    private void setupBottomNavigationBar() {
+        LinearLayout homeBtn = findViewById(R.id.homeBtn);
+        LinearLayout profileBtn = findViewById(R.id.profileBtn);
+
+        homeBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+            startActivity(intent);
+        });
+
+        profileBtn.setOnClickListener(v -> {
+            // Do nothing, already on Profile
+        });
     }
 
     private void setupOrderStatusViews() {
