@@ -1,8 +1,10 @@
 //Vo Nguyen Quynh Nhu - 23162074
 package vn.hcmute.ktqt;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -28,6 +30,7 @@ import vn.hcmute.ktqt.models.responses.PagedResponse;
 import vn.hcmute.ktqt.models.Product;
 import vn.hcmute.ktqt.network.ApiService;
 import vn.hcmute.ktqt.network.RetrofitClient;
+import vn.hcmute.ktqt.ui.intro.IntroActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView rvCategories;
     private RecyclerView rvProducts;
     private ProgressBar progressBar;
+    private Button btnLogout;
 
     private int currentPage = 1;
     private final int pageSize = 20;
@@ -64,6 +68,14 @@ public class MainActivity extends AppCompatActivity {
         rvCategories = findViewById(R.id.rvCategories);
         rvProducts = findViewById(R.id.rvProducts);
         progressBar = findViewById(R.id.progressBar);
+        btnLogout = findViewById(R.id.btnLogout);
+
+        btnLogout.setOnClickListener(v -> {
+            session.clear();
+            Intent intent = new Intent(MainActivity.this, IntroActivity.class);
+            startActivity(intent);
+            finish();
+        });
 
         categoryAdapter = new CategoryAdapter(category -> {
             // on category click
