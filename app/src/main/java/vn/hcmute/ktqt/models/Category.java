@@ -5,6 +5,16 @@ public class Category {
     public String name;
     public String iconUrl;
 
+    // Constructor mặc định (cần thiết cho một số thư viện như GSON)
+    public Category() {
+    }
+
+    // Constructor với id và name
+    public Category(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public String getId() {
         return id;
     }
