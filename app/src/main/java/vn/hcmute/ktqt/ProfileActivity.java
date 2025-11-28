@@ -55,7 +55,7 @@ public class ProfileActivity extends AppCompatActivity {
         View statusWaitPickup = findViewById(R.id.statusWaitPickup);
         ImageView ivStatus2 = statusWaitPickup.findViewById(R.id.ivStatus);
         TextView tvStatus2 = statusWaitPickup.findViewById(R.id.tvStatus);
-        ivStatus2.setImageResource(R.drawable.ic_creditcard);
+        ivStatus2.setImageResource(R.drawable.ic_order);
         tvStatus2.setText(R.string.status_wait_pickup);
 
         // Status 3: Đang giao

@@ -191,20 +191,20 @@
 
                         <!-- Item 1 -->
                         <include
-                            layout="@layout/item_order_status"
-                            android:id="@+id/statusWaitConfirm" />
+                            android:id="@+id/statusWaitConfirm"
+                            layout="@layout/item_order_status" />
                         <!-- Item 2 -->
                         <include
-                            layout="@layout/item_order_status"
-                            android:id="@+id/statusWaitPickup" />
+                            android:id="@+id/statusWaitPickup"
+                            layout="@layout/item_order_status" />
                         <!-- Item 3 -->
                         <include
-                            layout="@layout/item_order_status"
-                            android:id="@+id/statusShipping" />
+                            android:id="@+id/statusShipping"
+                            layout="@layout/item_order_status" />
                         <!-- Item 4 -->
                         <include
-                            layout="@layout/item_order_status"
-                            android:id="@+id/statusRating" />
+                            android:id="@+id/statusRating"
+                            layout="@layout/item_order_status" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -291,7 +291,7 @@
                             android:layout_height="40dp"
                             android:background="@drawable/bg_circle_white"
                             android:padding="8dp"
-                            android:src="@drawable/ic_voucher"
+                            android:src="@drawable/ic_box"
                             app:tint="#FFA500" />
 
                         <TextView
