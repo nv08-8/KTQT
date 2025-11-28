@@ -13,9 +13,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import vn.hcmute.ktqt.adapters.CategoryAdapter;
-import vn.hcmute.ktqt.api.ApiClient;
-import vn.hcmute.ktqt.api.ApiService;
 import vn.hcmute.ktqt.models.Category;
+import vn.hcmute.ktqt.network.ApiService;
+import vn.hcmute.ktqt.network.RetrofitClient;
 
 public class CategoryActivity extends AppCompatActivity {
 
@@ -40,8 +40,8 @@ public class CategoryActivity extends AppCompatActivity {
     }
 
     private void fetchCategories() {
-        ApiService apiService = ApiClient.getClient().create(ApiService.class);
-        apiService.getAllCategories().enqueue(new Callback<List<Category>>() {
+        ApiService apiService = RetrofitClient.getClient(this).create(ApiService.class);
+        apiService.getCategories().enqueue(new Callback<List<Category>>() {
             @Override
             public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
                 if (response.isSuccessful() && response.body() != null) {
