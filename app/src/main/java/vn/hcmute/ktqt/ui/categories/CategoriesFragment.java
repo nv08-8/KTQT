@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,17 +14,23 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import vn.hcmute.ktqt.R;
 import vn.hcmute.ktqt.adapters.CategoryAdapter;
 import vn.hcmute.ktqt.models.Category;
+import vn.hcmute.ktqt.network.ApiService;
+import vn.hcmute.ktqt.network.RetrofitClient;
 
 public class CategoriesFragment extends Fragment {
 
     private RecyclerView rvCategories;
     private CategoryAdapter categoryAdapter;
+    private ProgressBar progressBar;
+    private ApiService api;
     private OnCategoryClickListener mListener;
 
     public interface OnCategoryClickListener {
@@ -50,6 +58,8 @@ public class CategoriesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         rvCategories = view.findViewById(R.id.rvCategories);
+        progressBar = view.findViewById(R.id.progressBar);
+        api = RetrofitClient.getClient(getContext()).create(ApiService.class);
 
         setupRecyclerView();
         loadCategories();
@@ -66,16 +76,25 @@ public class CategoriesFragment extends Fragment {
     }
 
     private void loadCategories() {
-        // Mock data for categories as API is not available
-        List<Category> categories = new ArrayList<>();
-        categories.add(new Category("1", "Beef"));
-        categories.add(new Category("2", "Chicken"));
-        categories.add(new Category("3", "Dessert"));
-        categories.add(new Category("4", "Drink"));
-        categories.add(new Category("5", "Pork"));
-        // Add more mock categories as needed
+        progressBar.setVisibility(View.VISIBLE);
+        api.getCategories().enqueue(new Callback<List<Category>>() {
+            @Override
+            public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
+                progressBar.setVisibility(View.GONE);
+                if (response.isSuccessful() && response.body() != null) {
+                    // Data from DB is already in Vietnamese, no formatting needed.
+                    categoryAdapter.setItems(response.body());
+                } else {
+                    Toast.makeText(getContext(), "Failed to load categories", Toast.LENGTH_SHORT).show();
+                }
+            }
 
-        categoryAdapter.setItems(categories);
+            @Override
+            public void onFailure(Call<List<Category>> call, Throwable t) {
+                progressBar.setVisibility(View.GONE);
+                Toast.makeText(getContext(), "Network Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
