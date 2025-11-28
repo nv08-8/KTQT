@@ -1,4 +1,5 @@
-package vn.hcmute.busbooking.model;
+//Vo Nguyen Quynh Nhu - 23162074
+package vn.hcmute.ktqt.models.requests;
 
 public class LoginRequest {
     private String email;
