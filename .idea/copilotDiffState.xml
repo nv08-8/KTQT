@@ -3,6 +3,63 @@
   <component name="CopilotDiffPersistence">
     <option name="pendingDiffs">
       <map>
+        <entry key="$PROJECT_DIR$/app/src/main/res/drawable/edittext_bg.xml">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/app/src/main/res/drawable/edittext_bg.xml" />
+              <option name="updatedContent" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#10;&lt;shape xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot; android:shape=&quot;rectangle&quot;&gt;&#10;    &lt;solid android:color=&quot;#FFFFFFFF&quot; /&gt;&#10;    &lt;stroke android:width=&quot;1dp&quot; android:color=&quot;#FFDDDDDD&quot; /&gt;&#10;    &lt;corners android:radius=&quot;8dp&quot; /&gt;&#10;    &lt;padding android:left=&quot;8dp&quot; android:top=&quot;8dp&quot; android:right=&quot;8dp&quot; android:bottom=&quot;8dp&quot; /&gt;&#10;&lt;/shape&gt;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/drawable/ic_account.xml">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/app/src/main/res/drawable/ic_account.xml" />
+              <option name="updatedContent" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#10;&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&#10;    android:width=&quot;24dp&quot;&#10;    android:height=&quot;24dp&quot;&#10;    android:viewportWidth=&quot;24&quot;&#10;    android:viewportHeight=&quot;24&quot;&gt;&#10;    &lt;path&#10;        android:fillColor=&quot;#FF616161&quot;&#10;        android:pathData=&quot;M12,12c2.7,0 5-2.3 5-5s-2.3-5-5-5-5,2.3-5,5 2.3,5 5,5zM12,14c-3.3,0-10,1.7-10,5v3h20v-3C22,15.7,15.3,14,12,14z&quot;/&gt;&#10;&lt;/vector&gt;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/drawable/ic_arrow_back.xml">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/app/src/main/res/drawable/ic_arrow_back.xml" />
+              <option name="updatedContent" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#10;&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&#10;    android:width=&quot;24dp&quot;&#10;    android:height=&quot;24dp&quot;&#10;    android:viewportWidth=&quot;24&quot;&#10;    android:viewportHeight=&quot;24&quot;&gt;&#10;    &lt;path&#10;        android:fillColor=&quot;#FF212121&quot;&#10;        android:pathData=&quot;M20,11H7.83l5.59-5.59L12,4l-8,8 8,8 1.41-1.41L7.83,13H20v-2z&quot;/&gt;&#10;&lt;/vector&gt;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/drawable/ic_email_24.xml">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/app/src/main/res/drawable/ic_email_24.xml" />
+              <option name="updatedContent" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#10;&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&#10;    android:width=&quot;24dp&quot;&#10;    android:height=&quot;24dp&quot;&#10;    android:viewportWidth=&quot;24&quot;&#10;    android:viewportHeight=&quot;24&quot;&gt;&#10;    &lt;path&#10;        android:fillColor=&quot;#FF616161&quot;&#10;        android:pathData=&quot;M20,4H4c-1.11,0-2,0.89-2,2v12c0,1.11,0.89,2,2,2h16c1.11,0,2-0.89,2-2V6C22,4.89,21.11,4,20,4zM20,8l-8,5L4,8V6l8,5l8-5V8z&quot;/&gt;&#10;&lt;/vector&gt;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/drawable/ic_lock_24.xml">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/app/src/main/res/drawable/ic_lock_24.xml" />
+              <option name="updatedContent" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#10;&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&#10;    android:width=&quot;24dp&quot;&#10;    android:height=&quot;24dp&quot;&#10;    android:viewportWidth=&quot;24&quot;&#10;    android:viewportHeight=&quot;24&quot;&gt;&#10;    &lt;path&#10;        android:fillColor=&quot;#FF616161&quot;&#10;        android:pathData=&quot;M12,17c1.1,0 2-0.9 2-2s-0.9-2-2-2-2,0.9-2,2 0.9,2 2,2zM18,8h-1V6c0-2.76-2.24-5-5-5S7,3.24,7,6v2H6c-1.1,0-2,0.9-2,2v8c0,1.1,0.9,2,2,2h12c1.1,0,2-0.9,2-2v-8C20,8.9,19.1,8,18,8zM9,6c0-1.66,1.34-3,3-3s3,1.34,3,3v2H9V6z&quot;/&gt;&#10;&lt;/vector&gt;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/drawable/ic_phone.xml">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/app/src/main/res/drawable/ic_phone.xml" />
+              <option name="updatedContent" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#10;&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&#10;    android:width=&quot;24dp&quot;&#10;    android:height=&quot;24dp&quot;&#10;    android:viewportWidth=&quot;24&quot;&#10;    android:viewportHeight=&quot;24&quot;&gt;&#10;    &lt;path&#10;        android:fillColor=&quot;#FF616161&quot;&#10;        android:pathData=&quot;M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38l2.2-2.2c0.27-0.27 0.67-0.36 1.02-0.24 1.12,0.37 2.33,0.57 3.58,0.57 0.55,0 1,0.45 1,1V20c0,0.55-0.45,1-1,1C10.07,21 3,13.93 3,4c0-0.55 0.45-1 1-1h2.5c0.55,0 1,0.45 1,1 0,1.25 0.2,2.46 0.57,3.58 0.12,0.35 0.03,0.74-0.24,1.02L6.62,10.79z&quot;/&gt;&#10;&lt;/vector&gt;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+              <option name="originalContent" value="&lt;resources&gt;&#10;    &lt;string name=&quot;app_name&quot;&gt;UTEBook&lt;/string&gt;&#10;    &lt;string name=&quot;content_description_splash_logo&quot;&gt;Splash Logo&lt;/string&gt;&#10;    &lt;string name=&quot;recover_password&quot;&gt;Recover Password&lt;/string&gt;&#10;    &lt;string name=&quot;email&quot;&gt;Email&lt;/string&gt;&#10;    &lt;string name=&quot;password_recovery&quot;&gt;Password Recovery&lt;/string&gt;&#10;    &lt;string name=&quot;login&quot;&gt;Login&lt;/string&gt;&#10;    &lt;string name=&quot;login_subtitle&quot;&gt;Sign in to continue&lt;/string&gt;&#10;    &lt;string name=&quot;password&quot;&gt;Password&lt;/string&gt;&#10;    &lt;string name=&quot;remember_me&quot;&gt;Remember Me&lt;/string&gt;&#10;    &lt;string name=&quot;forgot_password&quot;&gt;Forgot Password?&lt;/string&gt;&#10;    &lt;string name=&quot;signup_prompt&quot;&gt;Don\'t have an account?&lt;/string&gt;&#10;    &lt;string name=&quot;signup_link&quot;&gt;Sign up&lt;/string&gt;&#10;    &lt;string name=&quot;register&quot;&gt;Register&lt;/string&gt;&#10;    &lt;string name=&quot;register_subtitle&quot;&gt;Create a new account&lt;/string&gt;&#10;    &lt;string name=&quot;full_name&quot;&gt;Full Name&lt;/string&gt;&#10;    &lt;string name=&quot;phone_number&quot;&gt;Phone Number&lt;/string&gt;&#10;    &lt;string name=&quot;confirm_password&quot;&gt;Confirm Password&lt;/string&gt;&#10;    &lt;string name=&quot;create_account&quot;&gt;Create Account&lt;/string&gt;&#10;    &lt;string name=&quot;login_prompt&quot;&gt;Already have an account?&lt;/string&gt;&#10;    &lt;string name=&quot;login_link&quot;&gt;Login&lt;/string&gt;&#10;&lt;/resources&gt;" />
+              <option name="updatedContent" value="&lt;resources&gt;&#10;    &lt;string name=&quot;app_name&quot;&gt;UTEBook&lt;/string&gt;&#10;    &lt;string name=&quot;content_description_splash_logo&quot;&gt;Splash Logo&lt;/string&gt;&#10;    &lt;string name=&quot;recover_password&quot;&gt;Recover Password&lt;/string&gt;&#10;    &lt;string name=&quot;email&quot;&gt;Email&lt;/string&gt;&#10;    &lt;string name=&quot;password_recovery&quot;&gt;Password Recovery&lt;/string&gt;&#10;    &lt;string name=&quot;login&quot;&gt;Login&lt;/string&gt;&#10;    &lt;string name=&quot;login_subtitle&quot;&gt;Sign in to continue&lt;/string&gt;&#10;    &lt;string name=&quot;password&quot;&gt;Password&lt;/string&gt;&#10;    &lt;string name=&quot;remember_me&quot;&gt;Remember Me&lt;/string&gt;&#10;    &lt;string name=&quot;forgot_password&quot;&gt;Forgot Password?&lt;/string&gt;&#10;    &lt;string name=&quot;signup_prompt&quot;&gt;Don\'t have an account?&lt;/string&gt;&#10;    &lt;string name=&quot;signup_link&quot;&gt;Sign up&lt;/string&gt;&#10;    &lt;string name=&quot;register&quot;&gt;Register&lt;/string&gt;&#10;    &lt;string name=&quot;register_subtitle&quot;&gt;Create a new account&lt;/string&gt;&#10;    &lt;string name=&quot;full_name&quot;&gt;Full Name&lt;/string&gt;&#10;    &lt;string name=&quot;phone_number&quot;&gt;Phone Number&lt;/string&gt;&#10;    &lt;string name=&quot;confirm_password&quot;&gt;Confirm Password&lt;/string&gt;&#10;    &lt;string name=&quot;create_account&quot;&gt;Create Account&lt;/string&gt;&#10;    &lt;string name=&quot;login_prompt&quot;&gt;Already have an account?&lt;/string&gt;&#10;    &lt;string name=&quot;login_link&quot;&gt;Login&lt;/string&gt;&#10;&#10;    &lt;!-- Added slogan used by activity_splash.xml --&gt;&#10;    &lt;string name=&quot;slogan&quot;&gt;Một nơi tìm sách yêu thích&lt;/string&gt;&#10;&lt;/resources&gt;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/db.js">
           <value>
             <PendingDiffInfo>
@@ -16,14 +73,6 @@
             <PendingDiffInfo>
               <option name="filePath" value="$PROJECT_DIR$/models/Book.js" />
               <option name="updatedContent" value="const mongoose = require(&quot;mongoose&quot;);&#10;&#10;const bookSchema = new mongoose.Schema({&#10;  title: String,&#10;  price: Number,&#10;});&#10;&#10;module.exports = mongoose.model(&quot;Book&quot;, bookSchema);&#10;" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/models/User.js">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/models/User.js" />
-              <option name="updatedContent" value="const mongoose = require('mongoose');&#10;&#10;const userSchema = new mongoose.Schema({&#10;  id: { type: Number, unique: true, sparse: true },&#10;  name: { type: String, required: true },&#10;  email: { type: String, required: true, unique: true },&#10;  password: { type: String, required: true },&#10;  phone: { type: String },&#10;  created_at: { type: Date, default: Date.now },&#10;  otp_code: { type: Number },&#10;  status: { type: String, enum: ['inactive', 'active'], default: 'inactive' },&#10;  role: { type: String, default: 'user' }&#10;});&#10;&#10;module.exports = mongoose.model('User', userSchema);&#10;" />
             </PendingDiffInfo>
           </value>
         </entry>

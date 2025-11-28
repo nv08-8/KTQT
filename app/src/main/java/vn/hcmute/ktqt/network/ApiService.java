@@ -16,6 +16,7 @@ import vn.hcmute.ktqt.models.User;
 import vn.hcmute.ktqt.models.requests.LoginRequest;
 import vn.hcmute.ktqt.models.requests.OtpRequest;
 import vn.hcmute.ktqt.models.requests.RegisterRequest;
+import vn.hcmute.ktqt.models.requests.SendOtpRequest;
 
 public interface ApiService {
 
@@ -31,6 +32,9 @@ public interface ApiService {
     @POST("auth/register")
     Call<Void> register(@Body RegisterRequest body);
 
+    @POST("auth/send-otp")
+    Call<Void> sendOtp(@Body SendOtpRequest body);
+
     @POST("auth/verify-otp")
     Call<AuthResponse> verifyOtp(@Body OtpRequest body);
 
@@ -40,4 +44,3 @@ public interface ApiService {
     @GET("auth/profile")
     Call<User> profile();
 }
-
