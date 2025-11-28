@@ -11,19 +11,54 @@ app.use(express.json());
 // Connect to MongoDB
 connectDB();
 
-// Test add data
-app.get("/test", async (req, res) => {
+// --- PRODUCT & CATEGORY APIs ---
+
+// GET all unique categories
+app.get('/api/categories', async (req, res) => {
   try {
-    const book = await Book.create({
-      title: "UTEBook",
-      price: 99
-    });
-    res.json(book);
+    const categories = await Book.distinct('category');
+    // Map to the object structure your Android app expects
+    const categoryObjects = categories.map(cat => ({ id: cat, name: cat, iconUrl: '' }));
+    res.json(categoryObjects);
   } catch (error) {
-    console.error("/test error:", error);
-    res.status(500).json({ error: error.message });
+    console.error('/api/categories error:', error);
+    res.status(500).json({ message: error.message });
   }
 });
+
+// GET products by category with pagination
+app.get('/api/categories/:id/products', async (req, res) => {
+  try {
+    const categoryId = req.params.id;
+    const page = parseInt(req.query.page) || 1;
+    const pageSize = parseInt(req.query.pageSize) || 10;
+    const sort = req.query.sort || 'title'; // default sort
+
+    const skip = (page - 1) * pageSize;
+
+    const products = await Book.find({ category: categoryId })
+      .sort(sort)
+      .skip(skip)
+      .limit(pageSize);
+
+    const totalProducts = await Book.countDocuments({ category: categoryId });
+    const totalPages = Math.ceil(totalProducts / pageSize);
+
+    res.json({
+      items: products,
+      page: page,
+      pageSize: pageSize,
+      totalItems: totalProducts,
+      totalPages: totalPages
+    });
+  } catch (error) {
+    console.error('/api/categories/:id/products error:', error);
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
+// --- AUTH APIs ---
 
 // Register endpoint
 app.post('/api/register', async (req, res) => {
@@ -35,7 +70,6 @@ app.post('/api/register', async (req, res) => {
     if (existing) return res.status(400).json({ message: 'Email already registered' });
 
     const hashed = await bcrypt.hash(password, 10);
-    // generate a simple numeric id (auto-increment-like)
     const last = await User.findOne().sort({ id: -1 }).select('id');
     const nextId = last && last.id ? last.id + 1 : 1;
 
@@ -49,7 +83,6 @@ app.post('/api/register', async (req, res) => {
       otp_code: Math.floor(100000 + Math.random() * 900000)
     });
 
-    // In a real app you'd send the OTP via SMS/Email. For now return it in response (or remove in prod)
     res.status(201).json({ message: 'User registered', userId: user.id, otp_code: user.otp_code });
   } catch (error) {
     console.error('/api/register error:', error);
@@ -69,7 +102,6 @@ app.post('/api/login', async (req, res) => {
     const ok = await bcrypt.compare(password, user.password);
     if (!ok) return res.status(401).json({ message: 'Invalid credentials' });
 
-    // create JWT
     const token = jwt.sign({ id: user.id, email: user.email, role: user.role }, process.env.JWT_SECRET || 'secretkey', { expiresIn: '7d' });
 
     res.json({ message: 'Login successful', token, user: { id: user.id, name: user.name, email: user.email, phone: user.phone, role: user.role } });
