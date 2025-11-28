@@ -6,14 +6,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 
 import vn.hcmute.ktqt.data.SessionManager;
-import vn.hcmute.ktqt.model.User;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -33,6 +31,15 @@ public class ProfileActivity extends AppCompatActivity {
         btnSettings = findViewById(R.id.btnSettings);
         btnLogout = findViewById(R.id.btnLogout);
         sessionManager = new SessionManager(this);
+
+        findViewById(R.id.homeBtn).setOnClickListener(v -> {
+            startActivity(new Intent(ProfileActivity.this, MainActivity.class));
+            finish();
+        });
+
+        findViewById(R.id.profileBtn).setOnClickListener(v -> {
+            // Do nothing, already in profile
+        });
 
         Intent intent = getIntent();
         String name = intent.getStringExtra("USER_NAME");
