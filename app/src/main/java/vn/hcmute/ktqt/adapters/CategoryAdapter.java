@@ -1,3 +1,5 @@
+//<!-- NGuyen Van Truong 23162108 -->
+ //       <!-- Nguyen Thi Dieu Lien 23162051 -->
 package vn.hcmute.ktqt.adapters;
 
 import android.view.LayoutInflater;
