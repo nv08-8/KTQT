@@ -17,31 +17,29 @@ import vn.hcmute.ktqt.models.User;
 import vn.hcmute.ktqt.models.requests.LoginRequest;
 import vn.hcmute.ktqt.models.requests.OtpRequest;
 import vn.hcmute.ktqt.models.requests.RegisterRequest;
-import vn.hcmute.ktqt.models.requests.SendOtpRequest;
 
 public interface ApiService {
 
-    @GET("categories")
+    // Corrected Paths
+    @GET("api/categories")
     Call<List<Category>> getCategories();
 
-    @GET("categories/{id}/products")
+    @GET("api/categories/{id}/products")
     Call<PagedResponse<Product>> getProductsByCategory(@Path("id") String categoryId,
                                                        @Query("page") int page,
                                                        @Query("pageSize") int pageSize,
                                                        @Query("sort") String sort);
 
-    @POST("auth/register")
+    // Corrected Paths
+    @POST("api/auth/register")
     Call<Void> register(@Body RegisterRequest body);
 
-    @POST("auth/send-otp")
-    Call<Void> sendOtp(@Body SendOtpRequest body);
-
-    @POST("auth/verify-otp")
+    @POST("api/auth/verify-otp")
     Call<AuthResponse> verifyOtp(@Body OtpRequest body);
 
-    @POST("auth/login")
+    @POST("api/auth/login")
     Call<AuthResponse> login(@Body LoginRequest body);
 
-    @GET("auth/profile")
+    @GET("api/auth/profile")
     Call<User> profile();
 }
