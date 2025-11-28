@@ -54,9 +54,9 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.VH> {
     public void onBindViewHolder(@NonNull VH holder, int position) {
         Book b = items.get(position);
         holder.title.setText(b.title);
-        holder.price.setText(String.format("%.2f", b.price));
+        holder.price.setText(String.format("%.0fđ", b.price)); // Format price without decimals
         Glide.with(holder.thumb.getContext())
-                .load(b.thumbnailUrl)
+                .load(b.imageUrl) // Use imageUrl instead of thumbnailUrl
                 .centerCrop()
                 .into(holder.thumb);
     }
