@@ -1,5 +1,6 @@
 package vn.hcmute.ktqt;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,18 +11,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import vn.hcmute.ktqt.model.User;
-import vn.hcmute.ktqt.network.RetrofitClient;
-import vn.hcmute.ktqt.network.ApiService;
 
 public class ProfileActivity extends AppCompatActivity {
 
     private TextView tvName, tvUsername;
     private ImageView imgAvatar;
-    private ApiService apiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,38 +27,20 @@ public class ProfileActivity extends AppCompatActivity {
         tvUsername = findViewById(R.id.tvUsername);
         imgAvatar = findViewById(R.id.imgAvatar);
 
-        apiService = RetrofitClient.getClient(this).create(ApiService.class);
-        fetchUserProfile();
-        setupOrderStatusViews();
-    }
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("USER_NAME");
+        String email = intent.getStringExtra("USER_EMAIL");
+        String avatarUrl = intent.getStringExtra("USER_AVATAR");
 
-    private void fetchUserProfile() {
-        apiService.getUserProfile().enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    User user = response.body();
-                    updateUI(user);
-                } else {
-                    Toast.makeText(ProfileActivity.this, "Failed to load profile", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                Toast.makeText(ProfileActivity.this, "An error occurred: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private void updateUI(User user) {
-        tvName.setText(user.getName());
-        tvUsername.setText(user.getEmail()); // Assuming username is the email
+        tvName.setText(name);
+        tvUsername.setText(email);
 
         Glide.with(this)
-                .load(user.getAvatarUrl())
+                .load(avatarUrl)
                 .placeholder(R.drawable.placeholder_avatar)
                 .into(imgAvatar);
+
+        setupOrderStatusViews();
     }
 
     private void setupOrderStatusViews() {
@@ -85,7 +62,7 @@ public class ProfileActivity extends AppCompatActivity {
         View statusShipping = findViewById(R.id.statusShipping);
         ImageView ivStatus3 = statusShipping.findViewById(R.id.ivStatus);
         TextView tvStatus3 = statusShipping.findViewById(R.id.tvStatus);
-        ivStatus3.setImageResource(R.drawable.ic_order);
+        ivStatus3.setImageResource(R.drawable.ic_trunk);
         tvStatus3.setText(R.string.status_shipping);
 
         // Status 4: Đánh giá

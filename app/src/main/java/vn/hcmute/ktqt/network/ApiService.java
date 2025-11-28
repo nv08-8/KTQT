@@ -10,6 +10,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import vn.hcmute.ktqt.model.User;
 import vn.hcmute.ktqt.models.responses.AuthResponse;
 import vn.hcmute.ktqt.models.Category;
 import vn.hcmute.ktqt.models.responses.PagedResponse;
@@ -51,4 +52,6 @@ public interface ApiService {
     Call<Map<String, Object>> forgotPassword(@Body Map<String, String> body);
 
     Call<List<Category>> getAllCategories();
+
+    Call<User> getUserProfile();
 }
