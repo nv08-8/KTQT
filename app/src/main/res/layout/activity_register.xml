@@ -1,0 +1,194 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".activity.RegisterActivity">
+
+    <!--  Header  -->
+
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:contentDescription="@string/content_description_splash_logo"
+        android:src="@drawable/ute"
+        app:layout_constraintBottom_toTopOf="@+id/registerContainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.056" />
+
+    <TextView
+        android:id="@+id/tvAppName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/app_name"
+        android:textColor="@color/textPrimary"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/imgLogo"
+        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintStart_toStartOf="@+id/imgLogo"
+        app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
+
+    <!--  Register Container  -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/registerContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        app:cardBackgroundColor="@color/colorCardBackground"
+        app:cardCornerRadius="28dp"
+        app:cardElevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.65">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/register"
+                android:textColor="@color/textPrimary"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/register_subtitle"
+                android:textColor="@color/textSecondary" />
+
+            <EditText
+                android:id="@+id/edtFullName"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:autofillHints="name"
+                android:background="@drawable/edittext_bg"
+                android:drawableStart="@drawable/ic_account"
+                android:drawablePadding="12dp"
+                android:drawableTint="@color/textHint"
+                android:hint="@string/full_name"
+                android:inputType="textPersonName"
+                android:paddingHorizontal="16dp" />
+
+            <EditText
+                android:id="@+id/edtPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="12dp"
+                android:autofillHints="phone"
+                android:background="@drawable/edittext_bg"
+                android:drawableStart="@drawable/ic_phone"
+                android:drawablePadding="12dp"
+                android:drawableTint="@color/textHint"
+                android:hint="@string/phone_number"
+                android:inputType="phone"
+                android:paddingHorizontal="16dp" />
+
+            <EditText
+                android:id="@+id/edtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="12dp"
+                android:autofillHints="emailAddress"
+                android:background="@drawable/edittext_bg"
+                android:drawableStart="@drawable/ic_email_24"
+                android:drawablePadding="12dp"
+                android:drawableTint="@color/textHint"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:paddingHorizontal="16dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:hintEnabled="false"
+                app:passwordToggleEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:autofillHints="newPassword"
+                    android:background="@drawable/edittext_bg"
+                    android:drawableStart="@drawable/ic_lock_24"
+                    android:drawablePadding="12dp"
+                    android:drawableTint="@color/textHint"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:paddingHorizontal="16dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:hintEnabled="false"
+                app:passwordToggleEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtConfirmPassword"
+                    android:hint="@string/confirm_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:autofillHints="newPassword"
+                    android:background="@drawable/edittext_bg"
+                    android:drawableStart="@drawable/ic_lock_24"
+                    android:drawablePadding="12dp"
+                    android:drawableTint="@color/textHint"
+                    android:inputType="textPassword"
+                    android:paddingHorizontal="16dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btnRegister"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="@string/create_account"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                app:cornerRadius="28dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/login_prompt"
+                    android:textColor="@color/textSecondary" />
+
+                <TextView
+                    android:id="@+id/tvLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/login_link"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <!--  Footer  -->
+</androidx.constraintlayout.widget.ConstraintLayout>

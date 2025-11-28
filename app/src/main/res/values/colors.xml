@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#FFA500</color>
+    <color name="colorAccent">#DAA520</color>
+    <color name="textPrimary">#FF000000</color>
+    <color name="textSecondary">#808080</color>
+    <color name="textHint">#A9A9A9</color>
+    <color name="textForgotPassword">#FFBF48</color>
+    <color name="colorCardBackground">#FFEFD5</color>
+</resources>

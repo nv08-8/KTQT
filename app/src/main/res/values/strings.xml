@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">UTEBook</string>
+    <string name="content_description_splash_logo">Splash Logo</string>
+    <string name="recover_password">Recover Password</string>
+    <string name="email">Email</string>
+    <string name="password_recovery">Password Recovery</string>
+    <string name="login">Login</string>
+    <string name="login_subtitle">Sign in to continue</string>
+    <string name="password">Password</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="signup_prompt">Don\'t have an account?</string>
+    <string name="signup_link">Sign up</string>
+    <string name="register">Register</string>
+    <string name="register_subtitle">Create a new account</string>
+    <string name="full_name">Full Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="create_account">Create Account</string>
+    <string name="login_prompt">Already have an account?</string>
+    <string name="login_link">Login</string>
+</resources>
