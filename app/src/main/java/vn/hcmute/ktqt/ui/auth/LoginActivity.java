@@ -1,3 +1,4 @@
+//Vo Nguyen Quynh Nhu - 23162074
 package vn.hcmute.ktqt.ui.auth;
 
 import android.content.Intent;
@@ -22,7 +23,7 @@ import vn.hcmute.ktqt.network.RetrofitClient;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText etUsername, etPassword;
+    private EditText etEmail, etPassword;
     private Button btnLogin;
     private TextView tvRegister;
 
@@ -34,8 +35,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        etUsername = findViewById(R.id.etUsername);
-        etPassword = findViewById(R.id.etPassword);
+        etEmail = findViewById(R.id.edtEmail);
+        etPassword = findViewById(R.id.edtPassword);
         btnLogin = findViewById(R.id.btnLogin);
         tvRegister = findViewById(R.id.tvRegister);
 
@@ -48,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void doLogin() {
-        String u = etUsername.getText().toString().trim();
+        String u = etEmail.getText().toString().trim();
         String p = etPassword.getText().toString().trim();
         if (u.isEmpty() || p.isEmpty()) {
             Toast.makeText(this, "Nhập username và password", Toast.LENGTH_SHORT).show();
@@ -74,4 +75,3 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 }
-
