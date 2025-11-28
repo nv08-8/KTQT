@@ -44,10 +44,15 @@ public class ProfileActivity extends AppCompatActivity {
             startActivity(settingsIntent);
         });
 
-        Glide.with(this)
-                .load(avatarUrl)
-                .placeholder(R.drawable.placeholder_avatar)
-                .into(imgAvatar);
+        if (avatarUrl != null && !avatarUrl.isEmpty()) {
+            Glide.with(this)
+                    .load(avatarUrl)
+                    .circleCrop()
+                    .placeholder(R.drawable.placeholder_avatar)
+                    .into(imgAvatar);
+        } else {
+            imgAvatar.setImageResource(R.drawable.placeholder_avatar);
+        }
 
         setupOrderStatusViews();
     }

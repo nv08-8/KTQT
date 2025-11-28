@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
             intent.putExtra("USER_NAME", (String) user.get("name"));
             intent.putExtra("USER_EMAIL", (String) user.get("email"));
-            intent.putExtra("USER_AVATAR", (String) user.get("avatar"));
+            intent.putExtra("USER_AVATAR", (String) user.get("ava"));
             startActivity(intent);
         });
 

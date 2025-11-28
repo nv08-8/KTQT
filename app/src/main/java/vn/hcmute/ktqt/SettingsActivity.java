@@ -1,9 +1,9 @@
 package vn.hcmute.ktqt;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -33,39 +33,28 @@ public class SettingsActivity extends AppCompatActivity {
 
         sessionManager = new SessionManager(this);
 
-        // Get user info from the session
-        Map<String, Object> user = sessionManager.getUser();
-        String name = "";
-        String email = "";
-        String phone = "";
-        String avatarUrl = "";
+        loadUserInfo();
+    }
 
+    private void loadUserInfo() {
+        Map<String, Object> user = sessionManager.getUser();
         if (user != null) {
-            if (user.containsKey("name")) {
-                name = (String) user.get("name");
-            }
-            if (user.containsKey("email")) {
-                email = (String) user.get("email");
-            }
-            if (user.containsKey("phone")) {
-                phone = (String) user.get("phone");
-            }
-             if (user.containsKey("avatar")) {
-                avatarUrl = (String) user.get("avatar");
+            String name = (String) user.get("name");
+            String email = (String) user.get("email");
+            String phone = (String) user.get("phone");
+            String avatarUrl = (String) user.get("ava");
+
+            tvName.setText(name != null ? name : "");
+            tvEmail.setText(email != null ? email : "");
+            tvPhone.setText(phone != null ? phone : "");
+            tvNameHeader.setText(name != null ? name : "");
+            tvEmailHeader.setText(email != null ? email : "");
+
+            if (avatarUrl != null && !avatarUrl.isEmpty()) {
+                Glide.with(this).load(avatarUrl).circleCrop().into(imgAvatar);
+            } else {
+                imgAvatar.setImageResource(R.drawable.placeholder_avatar);
             }
         }
-
-        // Set the text for the views
-        tvName.setText(name);
-        tvEmail.setText(email);
-        tvPhone.setText(phone);
-        tvNameHeader.setText(name);
-        tvEmailHeader.setText(email);
-
-        // Load the avatar image
-        Glide.with(this)
-                .load(avatarUrl)
-                .placeholder(R.drawable.placeholder_avatar)
-                .into(imgAvatar);
     }
 }
