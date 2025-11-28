@@ -27,4 +27,9 @@
     <string name="new_password_hint">New Password</string>
     <string name="confirm_new_password_hint">Confirm New Password</string>
     <string name="confirm">Confirm</string>
+    <string name="content_description_status_icon">Status Icon</string>
+    <string name="status_wait_confirm">Chờ xác nhận</string>
+    <string name="status_wait_pickup">Chờ lấy hàng</string>
+    <string name="status_shipping">Đang giao</string>
+    <string name="status_rating">Đánh giá</string>
 </resources>

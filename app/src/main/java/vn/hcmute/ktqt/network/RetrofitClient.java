@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 public class RetrofitClient {
     // Use the emulator loopback address to reach the host machine's backend during development
-    private static final String BASE_URL = "http://10.0.2.2:3000/"; // was: "https://api.uteboo.com/" // TODO: use BuildConfig for env-specific URLs
+    private static final String BASE_URL = "https://refreshing-respect-production.up.railway.app/"; // was: "https://api.uteboo.com/" // TODO: use BuildConfig for env-specific URLs
     private static Retrofit retrofit;
 
     public static Retrofit getClient(Context context) {
