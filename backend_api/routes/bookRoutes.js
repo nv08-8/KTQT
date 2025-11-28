@@ -4,21 +4,30 @@ const router = express.Router();
 const Book = require('../models/Book');
 
 // @route   GET /api/books
-// @desc    Get books, optionally filtered by categoryId
+// @desc    Get books, optionally filtered by category and sorted
 router.get('/', async (req, res) => {
     try {
-        const { categoryId } = req.query;
+        const { category, sort } = req.query;
         let query = {};
-        if (categoryId) {
-            // The field in your Book model that links to the category's ID
-            // This might be 'category', 'categoryId', or something else.
-            // Let's assume it is 'category' as per your DB screenshot.
-            query.category = categoryId; 
+        if (category) {
+            query.category = category;
         }
-        const books = await Book.find(query);
+
+        let sortOptions = {};
+        if (sort === 'price_asc') {
+            sortOptions.price = 1; // 1 for ascending
+        } else if (sort === 'price_desc') {
+            sortOptions.price = -1; // -1 for descending
+        }
+
+        const books = await Book.find(query).sort(sortOptions);
 
         // The Android app expects a PagedResponse format, so wrap the items.
-        res.json({ items: books });
+        res.json({ 
+            items: books,
+            page: 1,
+            totalPages: 1
+        });
     } catch (err) {
         console.error("Error fetching books:", err);
         res.status(500).send('Server Error');
