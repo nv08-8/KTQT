@@ -20,30 +20,31 @@ public interface ApiService {
     @GET("api/categories")
     Call<List<Category>> getAllCategories();
 
-    @GET("api/books") // Corrected Path
-    Call<PagedResponse<Book>> getBooksByCategory(@Query("categoryId") String categoryId,
+    @GET("api/books")
+    Call<PagedResponse<Book>> getBooksByCategory(@Query("category") String categoryName, // Changed from categoryId
                                                        @Query("page") int page,
                                                        @Query("pageSize") int pageSize,
                                                        @Query("sort") String sort);
 
-    @POST("api/register")
+    // Corrected Authentication Paths
+    @POST("api/auth/register")
     Call<Void> register(@Body RegisterRequest body);
 
-    @POST("api/verify-otp")
+    @POST("api/auth/verify-otp")
     Call<Map<String, Object>> verifyOtp(@Body Map<String, String> body);
 
-    @POST("api/login")
+    @POST("api/auth/login")
     Call<Map<String, Object>> login(@Body Map<String, String> body);
 
-    @POST("api/send-otp")
+    @POST("api/auth/send-otp")
     Call<Map<String, Object>> sendOtp(@Body Map<String, String> body);
 
-    @POST("api/finish-register")
+    @POST("api/auth/finish-register")
     Call<Map<String, Object>> finishRegister(@Body Map<String, String> body);
 
-    @POST("api/reset-password")
+    @POST("api/auth/reset-password")
     Call<Map<String, Object>> resetPassword(@Body Map<String, String> body);
 
-    @POST("api/forgot-password")
+    @POST("api/auth/forgot-password")
     Call<Map<String, Object>> forgotPassword(@Body Map<String, String> body);
 }

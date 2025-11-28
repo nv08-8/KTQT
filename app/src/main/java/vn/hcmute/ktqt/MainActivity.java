@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     private final int pageSize = 20;
     private boolean isLoading = false;
     private boolean isLastPage = false;
-    private String selectedCategoryId = null;
+    private String selectedCategoryName = null; // Changed from selectedCategoryId
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,11 +79,11 @@ public class MainActivity extends AppCompatActivity {
 
         categoryAdapter = new CategoryAdapter(category -> {
             // on category click
-            selectedCategoryId = category.id;
+            selectedCategoryName = category.name; // Use category.name instead of category.id
             currentPage = 1;
             isLastPage = false;
             bookAdapter.clear();
-            loadBooks(selectedCategoryId, currentPage);
+            loadBooks(selectedCategoryName, currentPage);
         });
 
         rvCategories.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (!isLoading && !isLastPage) {
                     if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount - 4) {
-                        loadBooks(selectedCategoryId, currentPage + 1);
+                        loadBooks(selectedCategoryName, currentPage + 1);
                     }
                 }
             }
@@ -124,11 +124,11 @@ public class MainActivity extends AppCompatActivity {
 
                     if (!categories.isEmpty()) {
                         // auto select first category and load its books
-                        selectedCategoryId = categories.get(0).id;
+                        selectedCategoryName = categories.get(0).name; // Use name
                         currentPage = 1;
                         isLastPage = false;
                         bookAdapter.clear();
-                        loadBooks(selectedCategoryId, currentPage);
+                        loadBooks(selectedCategoryName, currentPage);
                     }
                 } else {
                     Toast.makeText(MainActivity.this, "Không thể tải danh mục", Toast.LENGTH_SHORT).show();
@@ -142,11 +142,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void loadBooks(String categoryId, int page) {
-        if (categoryId == null) return;
+    private void loadBooks(String categoryName, int page) { // Changed parameter name
+        if (categoryName == null) return;
         isLoading = true;
         progressBar.setVisibility(View.VISIBLE);
-        api.getBooksByCategory(categoryId, page, pageSize, "price_asc").enqueue(new Callback<PagedResponse<Book>>() {
+        api.getBooksByCategory(categoryName, page, pageSize, "price_asc").enqueue(new Callback<PagedResponse<Book>>() {
             @Override
             public void onResponse(Call<PagedResponse<Book>> call, Response<PagedResponse<Book>> response) {
                 progressBar.setVisibility(View.GONE);
