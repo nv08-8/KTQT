@@ -1,3 +1,4 @@
+//Nguyen Van Truong 23162108
 package vn.hcmute.ktqt;
 
 import android.os.Bundle;
@@ -6,12 +7,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import vn.hcmute.ktqt.adapters.CategoryAdapter;
 import vn.hcmute.ktqt.api.ApiClient;
 import vn.hcmute.ktqt.api.ApiService;
 import vn.hcmute.ktqt.models.Category;
@@ -20,7 +21,6 @@ public class CategoryActivity extends AppCompatActivity {
 
     private RecyclerView rvCategories;
     private CategoryAdapter categoryAdapter;
-    private List<Category> categoryList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,10 @@ public class CategoryActivity extends AppCompatActivity {
         rvCategories = findViewById(R.id.rv_categories);
         rvCategories.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
-        categoryAdapter = new CategoryAdapter(categoryList);
+        // Khởi tạo adapter với một listener (có thể trống)
+        categoryAdapter = new CategoryAdapter(category -> {
+            // Xử lý sự kiện khi một mục được chọn (nếu cần)
+        });
         rvCategories.setAdapter(categoryAdapter);
 
         fetchCategories();
@@ -42,9 +45,8 @@ public class CategoryActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    categoryList.clear();
-                    categoryList.addAll(response.body());
-                    categoryAdapter.notifyDataSetChanged();
+                    // Sử dụng phương thức setItems của adapter để cập nhật dữ liệu
+                    categoryAdapter.setItems(response.body());
                 }
             }
 

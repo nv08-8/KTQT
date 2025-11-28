@@ -3,10 +3,13 @@ package vn.hcmute.ktqt.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +17,9 @@ import java.util.List;
 import vn.hcmute.ktqt.R;
 import vn.hcmute.ktqt.models.Category;
 
-public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.VH> {
-    private final List<Category> items = new ArrayList<>();
+public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder> {
+
+    private final List<Category> categories = new ArrayList<>();
     private final OnItemClickListener listener;
 
     public interface OnItemClickListener {
@@ -26,38 +30,54 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.VH> {
         this.listener = listener;
     }
 
-    public void setItems(List<Category> categories) {
-        items.clear();
-        if (categories != null) items.addAll(categories);
+    public void setItems(List<Category> newCategories) {
+        categories.clear();
+        if (newCategories != null) {
+            categories.addAll(newCategories);
+        }
+        notifyDataSetChanged();
+    }
+
+    public void clear() {
+        categories.clear();
         notifyDataSetChanged();
     }
 
     @NonNull
     @Override
-    public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_category, parent, false);
-        return new VH(v);
+    public CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_category, parent, false);
+        return new CategoryViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull VH holder, int position) {
-        Category c = items.get(position);
-        holder.name.setText(c.name);
-        holder.itemView.setOnClickListener(v -> listener.onItemClick(c));
+    public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
+        Category category = categories.get(position);
+        holder.bind(category, listener);
     }
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return categories.size();
     }
 
-    static class VH extends RecyclerView.ViewHolder {
-        TextView name;
+    static class CategoryViewHolder extends RecyclerView.ViewHolder {
 
-        public VH(@NonNull View itemView) {
+        ImageView ivCategoryIcon;
+        TextView tvCategoryName;
+
+        public CategoryViewHolder(@NonNull View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.tvCategoryName);
+            ivCategoryIcon = itemView.findViewById(R.id.iv_category_icon);
+            tvCategoryName = itemView.findViewById(R.id.tv_category_name);
+        }
+
+        public void bind(final Category category, final OnItemClickListener listener) {
+            tvCategoryName.setText(category.name);
+            Glide.with(itemView.getContext())
+                    .load(category.iconUrl)
+                    .into(ivCategoryIcon);
+            itemView.setOnClickListener(v -> listener.onItemClick(category));
         }
     }
 }
-
