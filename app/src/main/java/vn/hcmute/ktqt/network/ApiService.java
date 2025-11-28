@@ -17,6 +17,7 @@ import vn.hcmute.ktqt.models.User;
 import vn.hcmute.ktqt.models.requests.LoginRequest;
 import vn.hcmute.ktqt.models.requests.OtpRequest;
 import vn.hcmute.ktqt.models.requests.RegisterRequest;
+import vn.hcmute.ktqt.models.requests.SendOtpRequest;
 
 public interface ApiService {
 
@@ -40,6 +41,8 @@ public interface ApiService {
     @POST("api/auth/login")
     Call<AuthResponse> login(@Body LoginRequest body);
 
-    @GET("api/auth/profile")
-    Call<User> profile();
+    @POST("api/auth/send-otp")
+    Call<Void> sendOtp(@Body SendOtpRequest body);
+
+    Call<List<Category>> getAllCategories();
 }
