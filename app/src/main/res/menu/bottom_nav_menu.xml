@@ -10,7 +10,7 @@
 
     <item
         android:id="@+id/nav_profile"
-        android:icon="@drawable/ic_person"
+        android:icon="@drawable/ic_person1"
         android:title="Profile"
         app:showAsAction="ifRoom" />
 
