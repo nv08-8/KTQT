@@ -70,6 +70,11 @@ public class MainActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         btnLogout = findViewById(R.id.btnLogout);
 
+        findViewById(R.id.profileBtn).setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+            startActivity(intent);
+        });
+
         btnLogout.setOnClickListener(v -> {
             session.clear();
             Intent intent = new Intent(MainActivity.this, IntroActivity.class);

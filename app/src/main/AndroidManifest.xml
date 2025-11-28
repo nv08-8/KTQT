@@ -23,6 +23,7 @@
         <activity android:name=".ui.auth.RegisterActivity" android:exported="true" />
         <activity android:name=".ui.auth.OtpVerificationActivity" android:exported="true" />
         <activity android:name=".ui.auth.ResetPasswordActivity" android:exported="true" />
+        <activity android:name=".ProfileActivity" android:exported="true" />
         <activity android:name=".ui.intro.IntroActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

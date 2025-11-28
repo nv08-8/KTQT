@@ -26,12 +26,13 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="183dp"
                 android:orientation="vertical"
                 android:padding="20dp"
                 android:paddingTop="50dp">
 
                 <!-- Nút Cài đặt -->
+
                 <ImageView
                     android:id="@+id/btnSettings"
                     android:layout_width="32dp"
@@ -39,8 +40,7 @@
                     android:layout_gravity="end"
                     android:background="@drawable/bg_circle_translucent"
                     android:padding="6dp"
-                    android:src="@drawable/ic_settings"
-                    app:tint="#FFFFFF" />
+                    android:src="@drawable/ic_settings" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
