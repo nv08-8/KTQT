@@ -23,11 +23,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import vn.hcmute.ktqt.adapters.CategoryAdapter;
-import vn.hcmute.ktqt.adapters.ProductAdapter;
+import vn.hcmute.ktqt.adapters.BookAdapter;
 import vn.hcmute.ktqt.data.SessionManager;
 import vn.hcmute.ktqt.models.Category;
 import vn.hcmute.ktqt.models.responses.PagedResponse;
-import vn.hcmute.ktqt.models.Product;
+import vn.hcmute.ktqt.models.Book;
 import vn.hcmute.ktqt.network.ApiService;
 import vn.hcmute.ktqt.network.RetrofitClient;
 import vn.hcmute.ktqt.ui.intro.IntroActivity;
@@ -38,10 +38,10 @@ public class MainActivity extends AppCompatActivity {
     private ApiService api;
 
     private CategoryAdapter categoryAdapter;
-    private ProductAdapter productAdapter;
+    private BookAdapter bookAdapter;
 
     private RecyclerView rvCategories;
-    private RecyclerView rvProducts;
+    private RecyclerView rvBooks;
     private ProgressBar progressBar;
     private Button btnLogout;
 
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         api = RetrofitClient.getClient(this).create(ApiService.class);
 
         rvCategories = findViewById(R.id.rvCategories);
-        rvProducts = findViewById(R.id.rvProducts);
+        rvBooks = findViewById(R.id.rvProducts); // Assuming rvProducts is now rvBooks
         progressBar = findViewById(R.id.progressBar);
         btnLogout = findViewById(R.id.btnLogout);
 
@@ -82,19 +82,19 @@ public class MainActivity extends AppCompatActivity {
             selectedCategoryId = category.id;
             currentPage = 1;
             isLastPage = false;
-            productAdapter.clear();
-            loadProducts(selectedCategoryId, currentPage);
+            bookAdapter.clear();
+            loadBooks(selectedCategoryId, currentPage);
         });
 
         rvCategories.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         rvCategories.setAdapter(categoryAdapter);
 
-        productAdapter = new ProductAdapter();
+        bookAdapter = new BookAdapter();
         GridLayoutManager gm = new GridLayoutManager(this, 2);
-        rvProducts.setLayoutManager(gm);
-        rvProducts.setAdapter(productAdapter);
+        rvBooks.setLayoutManager(gm);
+        rvBooks.setAdapter(bookAdapter);
 
-        rvProducts.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        rvBooks.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (!isLoading && !isLastPage) {
                     if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount - 4) {
-                        loadProducts(selectedCategoryId, currentPage + 1);
+                        loadBooks(selectedCategoryId, currentPage + 1);
                     }
                 }
             }
@@ -115,51 +115,60 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadCategories() {
-        // Mock data for categories
-        List<Category> categories = new ArrayList<>();
-        categories.add(new Category("1", "Beef"));
-        categories.add(new Category("2", "Chicken"));
-        categories.add(new Category("3", "Dessert"));
-        categories.add(new Category("4", "Drink"));
-        categories.add(new Category("5", "Pork"));
-        categoryAdapter.setItems(categories);
-
-        if (!categories.isEmpty()) {
-            // auto select first
-            selectedCategoryId = categories.get(0).id;
-            currentPage = 1;
-            productAdapter.clear();
-            loadProducts(selectedCategoryId, currentPage);
-        }
-    }
-
-    private void loadProducts(String categoryId, int page) {
-        if (categoryId == null) return;
-        isLoading = true;
-        progressBar.setVisibility(View.VISIBLE);
-        api.getProductsByCategory(categoryId, page, pageSize, "price_asc").enqueue(new Callback<PagedResponse<Product>>() {
+        api.getAllCategories().enqueue(new Callback<List<Category>>() {
             @Override
-            public void onResponse(Call<PagedResponse<Product>> call, Response<PagedResponse<Product>> response) {
-                progressBar.setVisibility(View.GONE);
-                isLoading = false;
-                if (response.isSuccessful()) {
-                    PagedResponse<Product> body = response.body();
-                    if (body != null && body.items != null) {
-                        if (page == 1) productAdapter.clear();
-                        productAdapter.addItems(body.items);
-                        currentPage = body.page;
-                        isLastPage = body.page >= body.totalPages;
+            public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<Category> categories = response.body();
+                    categoryAdapter.setItems(categories);
+
+                    if (!categories.isEmpty()) {
+                        // auto select first category and load its books
+                        selectedCategoryId = categories.get(0).id;
+                        currentPage = 1;
+                        isLastPage = false;
+                        bookAdapter.clear();
+                        loadBooks(selectedCategoryId, currentPage);
                     }
                 } else {
-                    Toast.makeText(MainActivity.this, "Không thể tải sản phẩm", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Không thể tải danh mục", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<PagedResponse<Product>> call, Throwable t) {
+            public void onFailure(Call<List<Category>> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "Lỗi mạng khi tải danh mục", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void loadBooks(String categoryId, int page) {
+        if (categoryId == null) return;
+        isLoading = true;
+        progressBar.setVisibility(View.VISIBLE);
+        api.getBooksByCategory(categoryId, page, pageSize, "price_asc").enqueue(new Callback<PagedResponse<Book>>() {
+            @Override
+            public void onResponse(Call<PagedResponse<Book>> call, Response<PagedResponse<Book>> response) {
                 progressBar.setVisibility(View.GONE);
                 isLoading = false;
-                Toast.makeText(MainActivity.this, "Lỗi mạng khi tải sản phẩm", Toast.LENGTH_SHORT).show();
+                if (response.isSuccessful()) {
+                    PagedResponse<Book> body = response.body();
+                    if (body != null && body.items != null) {
+                        if (page == 1) bookAdapter.clear();
+                        bookAdapter.addItems(body.items);
+                        currentPage = body.page;
+                        isLastPage = body.page >= body.totalPages;
+                    }
+                } else {
+                    Toast.makeText(MainActivity.this, "Không thể tải sách", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PagedResponse<Book>> call, Throwable t) {
+                progressBar.setVisibility(View.GONE);
+                isLoading = false;
+                Toast.makeText(MainActivity.this, "Lỗi mạng khi tải sách", Toast.LENGTH_SHORT).show();
             }
         });
     }

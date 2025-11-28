@@ -41,7 +41,7 @@ public class CategoryActivity extends AppCompatActivity {
 
     private void fetchCategories() {
         ApiService apiService = RetrofitClient.getClient(this).create(ApiService.class);
-        apiService.getCategories().enqueue(new Callback<List<Category>>() {
+        apiService.getAllCategories().enqueue(new Callback<List<Category>>() {
             @Override
             public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
                 if (response.isSuccessful() && response.body() != null) {

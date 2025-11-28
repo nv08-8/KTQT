@@ -20,15 +20,6 @@
             </PendingDiffInfo>
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/backend_api/test_sendgrid.js">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/backend_api/test_sendgrid.js" />
-              <option name="originalContent" value="&#10;" />
-              <option name="updatedContent" value="// Simple SendGrid test script for local debugging&#10;// Usage (PowerShell):&#10;//  node .\test_sendgrid.js&#10;&#10;// Load .env so the script can pick up SENDGRID_API_KEY and SENDGRID_FROM automatically&#10;require('dotenv').config();&#10;&#10;const sg = require('@sendgrid/mail');&#10;&#10;const key = process.env.SENDGRID_API_KEY;&#10;const from = process.env.SENDGRID_FROM;&#10;&#10;if (!key) {&#10;  console.error('SENDGRID_API_KEY is not set. Export it and re-run the script.');&#10;  process.exitCode = 2;&#10;} else if (!from) {&#10;  console.error('SENDGRID_FROM is not set. Export it and re-run the script.');&#10;  process.exitCode = 2;&#10;} else {&#10;  sg.setApiKey(key);&#10;  (async () =&gt; {&#10;    try {&#10;      const res = await sg.send({&#10;        to: from, // send to the same address for quick verification&#10;        from: { email: from, name: 'UTEBook Test' },&#10;        subject: 'SendGrid connectivity test',&#10;        text: 'This is a test message to verify SendGrid API key and sender configuration.'&#10;      });&#10;      console.log('SendGrid response status:', res[0]?.statusCode || 'unknown');&#10;      console.dir(res[0]);&#10;    } catch (err) {&#10;      console.error('SendGrid send failed. Full error object:');&#10;      // Log as much as is safe for debugging (but do not print the API key)&#10;      if (err.response &amp;&amp; err.response.body) {&#10;        console.error(JSON.stringify(err.response.body, null, 2));&#10;      } else {&#10;        console.error(err);&#10;      }&#10;      process.exitCode = 1;&#10;    }&#10;  })();&#10;}" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
         <entry key="$PROJECT_DIR$/db.js">
           <value>
             <PendingDiffInfo>

@@ -77,7 +77,7 @@ public class CategoriesFragment extends Fragment {
 
     private void loadCategories() {
         progressBar.setVisibility(View.VISIBLE);
-        api.getCategories().enqueue(new Callback<List<Category>>() {
+        api.getAllCategories().enqueue(new Callback<List<Category>>() {
             @Override
             public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
                 progressBar.setVisibility(View.GONE);

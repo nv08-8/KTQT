@@ -8,27 +8,24 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 import vn.hcmute.ktqt.models.responses.AuthResponse;
 import vn.hcmute.ktqt.models.Category;
 import vn.hcmute.ktqt.models.responses.PagedResponse;
-import vn.hcmute.ktqt.models.Product;
+import vn.hcmute.ktqt.models.Book;
 import vn.hcmute.ktqt.models.requests.*;
 
 public interface ApiService {
 
-    // Corrected Paths
     @GET("api/categories")
-    Call<List<Category>> getCategories();
+    Call<List<Category>> getAllCategories();
 
-    @GET("api/categories/{id}/products")
-    Call<PagedResponse<Product>> getProductsByCategory(@Path("id") String categoryId,
+    @GET("api/books") // Corrected Path
+    Call<PagedResponse<Book>> getBooksByCategory(@Query("categoryId") String categoryId,
                                                        @Query("page") int page,
                                                        @Query("pageSize") int pageSize,
                                                        @Query("sort") String sort);
 
-    // Corrected Paths
     @POST("api/register")
     Call<Void> register(@Body RegisterRequest body);
 
@@ -49,6 +46,4 @@ public interface ApiService {
 
     @POST("api/forgot-password")
     Call<Map<String, Object>> forgotPassword(@Body Map<String, String> body);
-
-    Call<List<Category>> getAllCategories();
 }
