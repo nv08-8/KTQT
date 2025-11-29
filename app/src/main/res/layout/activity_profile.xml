@@ -2,6 +2,7 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF7ED"
@@ -30,17 +31,6 @@
                 android:orientation="vertical"
                 android:padding="20dp"
                 android:paddingTop="50dp">
-
-                <!-- Nút Cài đặt -->
-                <ImageView
-                    android:id="@+id/btnSettings"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_gravity="end"
-                    android:background="@drawable/bg_circle_translucent"
-                    android:padding="6dp"
-                    android:src="@drawable/ic_settings"
-                    app:tint="#FFFFFF" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -96,7 +86,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:alpha="0.9"
-                            android:text="@hongphuoc_cute"
+                            android:text="@account"
                             android:textColor="#FFFFFF"
                             android:textSize="14sp" />
 
@@ -183,28 +173,92 @@
 
                     <!-- Grid 4 Icons -->
                     <LinearLayout
+                        xmlns:android="http://schemas.android.com/apk/res/android"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:orientation="horizontal"
                         android:layout_marginTop="20dp"
-                        android:baselineAligned="false"
-                        android:orientation="horizontal">
+                        android:baselineAligned="false">
 
-                        <!-- Item 1 -->
-                        <include
-                            layout="@layout/item_order_status"
-                            android:id="@+id/statusWaitConfirm" />
-                        <!-- Item 2 -->
-                        <include
-                            layout="@layout/item_order_status"
-                            android:id="@+id/statusWaitPickup" />
-                        <!-- Item 3 -->
-                        <include
-                            layout="@layout/item_order_status"
-                            android:id="@+id/statusShipping" />
-                        <!-- Item 4 -->
-                        <include
-                            layout="@layout/item_order_status"
-                            android:id="@+id/statusRating" />
+                        <LinearLayout
+                            android:id="@+id/statusWaitConfirm"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:clickable="false"
+                            android:focusable="false">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/ic_receipt" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Đã xác nhận" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/statusWaitPickup"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:clickable="false"
+                            android:focusable="false">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/ic_box" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Đang lấy hàng" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/statusShipping"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:clickable="false"
+                            android:focusable="false">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/ic_truck" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Đang giao" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/statusRating"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:clickable="false"
+                            android:focusable="false">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/ic_star" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Đánh giá" />
+                        </LinearLayout>
 
                     </LinearLayout>
                 </LinearLayout>
@@ -249,8 +303,7 @@
                             android:layout_height="40dp"
                             android:background="@drawable/bg_circle_white"
                             android:padding="8dp"
-                            android:src="@drawable/ic_creditcard"
-                            app:tint="#FFA500" />
+                            android:src="@drawable/ic_creditcard" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -291,8 +344,7 @@
                             android:layout_height="40dp"
                             android:background="@drawable/bg_circle_white"
                             android:padding="8dp"
-                            android:src="@drawable/ic_voucher"
-                            app:tint="#FFA500" />
+                            android:src="@drawable/ic_voucher" />
 
                         <TextView
                             android:layout_width="wrap_content"
