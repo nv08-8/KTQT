@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "vn.hcmute.ktqt.app-mergeDebugResources-36:/values-v25/values-v25.xml",
+            "map": [
+                {
+                    "source": "/Users/khangbanhmi/.gradle/caches/8.13/transforms/27ea37c2700cf20e06526fce1283243f/transformed/appcompat-1.7.1/res/values-v25/values-v25.xml",
+                    "from": {
+                        "startLines": "2,3,4,6",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,126,209,308",
+                        "endLines": "2,3,5,7",
+                        "endColumns": "70,82,12,12",
+                        "endOffsets": "121,204,303,414"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="colorAccent">#DAA520</color>
+    <color name="colorCardBackground">#FFEFD5</color>
+    <color name="colorPrimary">#FFA500</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="textForgotPassword">#FFBF48</color>
+    <color name="textHint">#A9A9A9</color>
+    <color name="textPrimary">#FF000000</color>
+    <color name="textSecondary">#808080</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="app_name">UTEBook</string>
+    <string name="back_button">Back</string>
+    <string name="confirm">Confirm</string>
+    <string name="confirm_new_password_hint">Confirm New Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="content_description_splash_logo">Splash Logo</string>
+    <string name="content_description_status_icon">Status Icon</string>
+    <string name="create_account">Create Account</string>
+    <string name="email">Email</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="full_name">Full Name</string>
+    <string name="login">Login</string>
+    <string name="login_link">Login</string>
+    <string name="login_prompt">Already have an account?</string>
+    <string name="login_subtitle">Sign in to continue</string>
+    <string name="new_password_hint">New Password</string>
+    <string name="password">Password</string>
+    <string name="password_recovery">Password Recovery</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="recover_password">Recover Password</string>
+    <string name="register">Register</string>
+    <string name="register_subtitle">Create a new account</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="reset_password_instruction">Enter your new password below.</string>
+    <string name="reset_password_title">Reset Password</string>
+    <string name="signup_link">Sign up</string>
+    <string name="signup_prompt">Don\'t have an account?</string>
+    <string name="slogan">Một nơi tìm sách yêu thích</string>
+    <string name="status_rating">Đánh giá</string>
+    <string name="status_shipping">Đang giao</string>
+    <string name="status_wait_confirm">Chờ xác nhận</string>
+    <string name="status_wait_pickup">Chờ lấy hàng</string>
+    <style name="Base.Theme.KTQT" parent="Theme.Material3.DayNight.NoActionBar">
+        
+        
+    </style>
+    <style name="Theme.KTQT" parent="Base.Theme.KTQT"/>
+</resources>

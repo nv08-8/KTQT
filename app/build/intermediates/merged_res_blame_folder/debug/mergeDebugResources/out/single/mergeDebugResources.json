@@ -1,0 +1,298 @@
+[
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_ic_settings_vector.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/ic_settings_vector.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_ic_home.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/ic_home.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/xml_network_security_config.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/xml/network_security_config.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/layout_activity_login.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/layout/activity_login.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_ic_trunk.png.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/ic_trunk.png"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_ic_order.png.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/ic_order.png"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/layout_fragment_categories.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/layout/fragment_categories.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/layout_activity_profile.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/layout/activity_profile.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/xml_data_extraction_rules.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable-anydpi-v24_ic_launcher_foreground.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-pngs-34:/drawable-anydpi-v24/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_ic_email_24.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/ic_email_24.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_search_background.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/search_background.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/layout_activity_reset_password.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/layout/activity_reset_password.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_ic_support.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/ic_support.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_ic_launcher_background.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_bg_circle_translucent.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/bg_circle_translucent.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_ic_lock_24.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/ic_lock_24.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_outline_broken_image_24.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/outline_broken_image_24.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_bg_indicator_green.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/bg_indicator_green.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_ic_creditcard.png.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/ic_creditcard.png"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_ic_phone.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/ic_phone.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_ic_add.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/ic_add.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_delivery_banner.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/delivery_banner.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/layout_cart_item.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/layout/cart_item.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/layout_activity_forgot_password.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/layout/activity_forgot_password.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/layout_activity_category.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/layout/activity_category.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/xml_backup_rules.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/layout_item_product.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/layout/item_product.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_ic_box.png.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/ic_box.png"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_ic_star.png.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/ic_star.png"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_bg_chip_white.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/bg_chip_white.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_ic_person1.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/ic_person1.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/layout_bottom_app_bar.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/layout/bottom_app_bar.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_bg_badge_gold.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/bg_badge_gold.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_ic_settings.png.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/ic_settings.png"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_ic_account.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/ic_account.xml"
+    },
+    {
+        "merged": "vn.hcmute.ktqt.app-debug-38:/layout_activity_update.xml.flat",
+        "source": "vn.hcmute.ktqt.app-main-40:/layout/activity_update.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/layout_activity_otp_verification.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/layout/activity_otp_verification.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_header_background_gradient.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/header_background_gradient.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/layout_activity_update.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/layout/activity_update.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/menu_bottom_nav_menu.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/menu/bottom_nav_menu.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_edittext_bg.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/edittext_bg.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_bg_badge_red_circle.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/bg_badge_red_circle.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_ic_arrow_back.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/ic_arrow_back.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_search_bar_background.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/search_bar_background.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_bg_circle_white.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/bg_circle_white.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/layout_activity_main.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/layout_item_order_status.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/layout/item_order_status.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_ute.png.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/ute.png"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/layout_activity_settings.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/layout/activity_settings.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/layout_item_category.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/layout/item_category.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_ic_voucher.png.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/ic_voucher.png"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_ic_person.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/ic_person.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/layout_activity_intro.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/layout/activity_intro.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_ic_receipt.png.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/ic_receipt.png"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_ic_remove.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/ic_remove.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_placeholder_avatar.png.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/placeholder_avatar.png"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_background.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/background.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/menu_bottom_navigation_menu.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/menu/bottom_navigation_menu.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_ic_shopping_cart.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/ic_shopping_cart.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/layout_activity_register.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/layout/activity_register.xml"
+    },
+    {
+        "merged": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-debug-38:/drawable_ic_delete.xml.flat",
+        "source": "/Users/khangbanhmi/.gradle/daemon/8.13/vn.hcmute.ktqt.app-main-40:/drawable/ic_delete.xml"
+    }
+]
